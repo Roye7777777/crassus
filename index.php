@@ -13,12 +13,12 @@ echo "Gompes! Allemaggies wat mooi!";
 // Create a client with a base URI
 $client = new Client([
     // Base URI is used with relative requests
-    'base_uri' => 'http://httpbin.org',
+    'base_uri' => 'http://crassus-php.azurewebsites.net/',
     // You can set any number of default request options.
     'timeout'  => 2.0,
 ]);
-$response = $client->get('http://httpbin.org/get');
-$code = $response->getStatusCode(); // 200
+$response = $client->get('http://crassus-php.azurewebsites.net/');
+$code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
 
 echo $code;
