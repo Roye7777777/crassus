@@ -30,4 +30,19 @@ if ($response->hasHeader('Content-Length')) {
 } else {
     echo "Nee</br>Code:\",$code,\"<br/>Reason:\",$reason";
 }
+
+$client = new MongoDB\Client("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939");
+$collection = $client->crassus->questions;
+$cursor = $collection->find( [ 'question_nr' => 1 ] );
+foreach ($cursor as $doc) {
+    var_dump($doc);
+}
+/*$cursor = $collection->insertOne(
+    [
+        'question_nr' => 99,
+        'question' => 'Does this work?'
+    ]
+);*/
+//echo "Wat hebben we hier '{$cursor->getInsertedId()}'";
+
 ?>
