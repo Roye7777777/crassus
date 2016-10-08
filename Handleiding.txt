@@ -4,7 +4,7 @@ Hoe zet je crassus-php een beetje goed op
 
 0.1 Download PHPstorm, maak er een trial van (of link je schoolmail eraan via dat eduction programme van ze, dan kan je het een jaar legaal gebruken)
 
-0.2 Maak géén nieuw project aan en/of folder - open een bestaand project vanuit Github
+0.2 Maak gÃ©Ã©n nieuw project aan en/of folder - open een bestaand project vanuit Github
 	- vul hier in hoe
 
 0.3 Kijk of je dat project kan openen in PHPstorm en syncen met Github. Lukt dat niet, zoek 't op of als 't een permissions gekut is, let me know
@@ -36,3 +36,14 @@ maak wijzigingen, commit/push de shit
 
 http://crassus-php.azurewebsites.net/
 
+MongoDB in php is wat anders dan normaal
+http://php.net/manual/en/set.mongodb.php
+
+Meer docs van MongoDB in PHP
+http://mongodb.github.io/mongo-php-library/classes/client/#mongodbclient
+
+Andere linkjes die voor niemand interessant zijn
+http://pecl.php.net/package/mongodb/1.1.8/windows
+http://docs.guzzlephp.org/en/latest/overview.html#installation
+https://azure.microsoft.com/nl-nl/documentation/articles/web-sites-php-configure/
+https://getcomposer.org/doc/00-intro.md
