@@ -18,10 +18,12 @@ $client = new Client([
     'timeout'  => 30,
 ]);
 
+echo "boe 1!";
+
 $response = $client->get('http://crassus-php.azurewebsites.net/');
 
+echo "boe 2!";
 echo $response;
-echo "boe!";
 
 $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
