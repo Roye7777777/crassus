@@ -33,9 +33,17 @@ if ($response->hasHeader('Content-Length')) {
 
 echo "<br/>jongeTOCH<br/>";
 
-$m = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939");    // ← connection is requested from the pool
-$c = $m->crassus->questions;
-$c->insert( array( 'test' => 'yes' ) );
+// "localhost", 27000 is een alternatief
+$client = new MongoDB\Client(
+    'mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus'
+);
+$collection = $client->crassus->questions;
+
+$result = $collection->find( [ 'question_nr' => 1 ] );
+
+foreach ($result as $entry) {
+    echo $entry['_id'], ': ', $entry['question_nr'], "\n";
+}
 
 echo "JONGE";
 //$client = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939"); //MongoDB\Client?
