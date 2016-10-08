@@ -31,8 +31,8 @@ if ($response->hasHeader('Content-Length')) {
     echo "Nee</br>Code:\",$code,\"<br/>Reason:\",$reason";
 }
 
-echo "jongeTOCH<br/>";
-$client = new MongoDB\Client("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939");
+echo "<br/>jongeTOCH<br/>";
+$client = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939"); //MongoDB\Client?
 $collection = $client->crassus->questions;
 $cursor = $collection->find( [ 'question_nr' => 1 ] );
 foreach ($cursor as $doc) {
