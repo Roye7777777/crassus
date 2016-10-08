@@ -32,20 +32,26 @@ if ($response->hasHeader('Content-Length')) {
 }
 
 echo "<br/>jongeTOCH<br/>";
-$client = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939"); //MongoDB\Client?
-$collection = $client->crassus->questions;
-$cursor = $collection->find( [ 'question_nr' => 1 ] );
-foreach ($cursor as $doc) {
-    echo "bla";
-    echo $doc,"<br/>";
-}
-/*$cursor = $collection->insertOne(
-    [
-        'question_nr' => 99,
-        'question' => 'Does this work?'
-    ]
-);*/
-//echo "Wat hebben we hier '{$cursor->getInsertedId()}'";
 
-echo "DAAG!<br/>";
+$m = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939");    // ← connection is requested from the pool
+$c = $m->crassus->questions;
+$c->insert( array( 'test' => 'yes' ) );
+
+echo "JONGE";
+//$client = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939"); //MongoDB\Client?
+//$collection = $client->crassus->questions;
+//$cursor = $collection->find( [ 'question_nr' => 1 ] );
+//foreach ($cursor as $doc) {
+//    echo "bla";
+//    echo $doc,"<br/>";
+//}
+///*$cursor = $collection->insertOne(
+//    [
+//        'question_nr' => 99,
+//        'question' => 'Does this work?'
+//    ]
+//);*/
+////echo "Wat hebben we hier '{$cursor->getInsertedId()}'";
+//
+//echo "DAAG!<br/>";
 ?>
