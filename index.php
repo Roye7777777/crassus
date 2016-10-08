@@ -9,12 +9,18 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-echo "Gompes!";
+echo "Gompes! Allemaggies wat mooi!";
 // Create a client with a base URI
-$client = new GuzzleHttp\Client(['base_uri' => 'http://crassus-php.azurewebsites.net/']);
-// Send a request to https://foo.com/api/test
-$response = $client->request('GET', 'test');
-$response = $client->request('GET', 'testje');
-// Send a request to https://foo.com/root
-$response = $client->request('GET', '/root');
+$client = new Client([
+    // Base URI is used with relative requests
+    'base_uri' => 'http://httpbin.org',
+    // You can set any number of default request options.
+    'timeout'  => 2.0,
+]);
+$response = $client->get('http://httpbin.org/get');
+$code = $response->getStatusCode(); // 200
+$reason = $response->getReasonPhrase(); // OK
+
+echo $code;
+echo $reason;
 ?>
