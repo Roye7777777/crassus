@@ -33,10 +33,10 @@ if ($response->hasHeader('Content-Length')) {
 
 echo "jongeTOCH<br/>";
 $client = new MongoDB\Client("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939");
-echo $client,"<br/>";
 $collection = $client->crassus->questions;
 $cursor = $collection->find( [ 'question_nr' => 1 ] );
 foreach ($cursor as $doc) {
+    echo "bla";
     echo $doc,"<br/>";
 }
 /*$cursor = $collection->insertOne(
