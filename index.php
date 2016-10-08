@@ -17,7 +17,12 @@ $client = new Client([
     // You can set any number of default request options.
     'timeout'  => 2.0,
 ]);
+
 $response = $client->get('http://crassus-php.azurewebsites.net/');
+
+echo $response;
+echo "boe!";
+
 $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
 
