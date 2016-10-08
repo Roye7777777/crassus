@@ -13,21 +13,16 @@ echo "Gompes! Allemaggies wat mooi!";
 // Create a client with a base URI
 $client = new Client([
     // Base URI is used with relative requests
-    'base_uri' => 'http://crassus-php.azurewebsites.net/',
+    'base_uri' => 'http://crassus-php.azurewebsites.net',
     // You can set any number of default request options.
-    'timeout'  => 30,
+    'timeout'  => 10.0,
 ]);
-
-echo "boe 1!";
 
 $response = $client->get('http://crassus-php.azurewebsites.net/');
 
-echo "boe 2!";
-echo $response;
-
-$code = $response->getStatusCode(); // kan 200 zijn
-$reason = $response->getReasonPhrase(); // OK
-
-echo $code;
-echo $reason;
+if ($response->hasHeader('Content-Length')) {
+    echo "It exists";
+} else {
+    echo "Noppes";
+}
 ?>
