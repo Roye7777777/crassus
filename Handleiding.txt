@@ -1,0 +1,38 @@
+-----------------------------------------
+Hoe zet je crassus-php een beetje goed op
+-----------------------------------------
+
+0.1 Download PHPstorm, maak er een trial van (of link je schoolmail eraan via dat eduction programme van ze, dan kan je het een jaar legaal gebruken)
+
+0.2 Maak géén nieuw project aan en/of folder - open een bestaand project vanuit Github
+	- vul hier in hoe
+
+0.3 Kijk of je dat project kan openen in PHPstorm en syncen met Github. Lukt dat niet, zoek 't op of als 't een permissions gekut is, let me know
+
+0.4 Weet ik veel, lees tutorials on how to git https://guides.github.com/activities/hello-world/
+
+1.1 Log in met ftps (gebruik FileZilla of zo)
+
+FTPS
+- username: 		is te vinden in postal.azure.com bij Instellingen > Eigenschappen, FTP-/IMPLEMENTATIEGEBRUIKER
+- ftps hostname: 	is te vinden in portal.azure.com bij Instellingen > Eigenschappen, FTPS HOSTNAAM
+- ftps wachtwoord:	0ur0b0r0s-PHP
+
+1.2 Ga in Filezilla in het venster links (met jouw mappenstructuur) naar de map waarin je PhpstormProjects hebt staan
+(meestal bij Users\[jouwnaam]\PhpstormProjects
+
+1.3 Ga (venster links nog steeds) naar de map waarin 't project staat (dit geval 'crassus')
+
+1.4 Verplaats vanuit de wwwroot van de site die je met FTPS in FileZilla geopend hebt (venster rechts) 
+	- de map vendor
+	- composer.json
+	- composer.lock
+	- composer.phar
+naar naar jouw eigen projectmap (users\[jouwnaam]\PhpstormProjects\crassus - het venster links dus)
+
+----------
+
+maak wijzigingen, commit/push de shit
+
+http://crassus-php.azurewebsites.net/
+
