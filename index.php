@@ -15,7 +15,7 @@ $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => 'http://crassus-php.azurewebsites.net/',
     // You can set any number of default request options.
-    'timeout'  => 2.0,
+    'timeout'  => 30,
 ]);
 
 $response = $client->get('http://crassus-php.azurewebsites.net/');
