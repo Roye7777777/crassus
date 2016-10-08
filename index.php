@@ -18,11 +18,18 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-$response = $client->get('http://crassus-php.azurewebsites.net/');
+$response = $client->get('http://crassus-php.azurewebsites.net/blabla.jsonZ');
+
+$code = $response->getStatusCode(); // kan 200 zijn
+$reason = $response->getReasonPhrase(); // OK
 
 if ($response->hasHeader('Content-Length')) {
     echo "It exists";
 } else {
     echo "Noppes";
 }
+
+echo $code;
+echo $reason;
+
 ?>
