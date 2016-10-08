@@ -18,7 +18,7 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-$response = $client->get('http://crassus-php.azurewebsites.net');
+$response = $client->get('http://crassus-php.azurewebsites.net/jayson/blabla.html');
 
 $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
