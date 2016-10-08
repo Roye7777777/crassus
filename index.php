@@ -24,12 +24,12 @@ $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
 
 if ($response->hasHeader('Content-Length')) {
-    echo "It exists";
+    echo "Blabla bestaat\n";
 } else {
-    echo "Noppes";
+    echo "Geen blabla\n";
 }
 
-echo $code;
-echo $reason;
+echo $code, "\n";
+echo $reason, "\n";
 
 ?>
