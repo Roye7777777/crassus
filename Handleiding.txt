@@ -36,6 +36,10 @@ maak wijzigingen, commit/push de shit
 
 http://crassus-php.azurewebsites.net/
 
+Guzzle is een PHP framework waarin je HTTP requests en zo
+kan uitvoeren. Zegt het. Docs:
+http://docs.guzzlephp.org/en/latest/quickstart.html
+
 MongoDB in php is wat anders dan normaal
 http://php.net/manual/en/set.mongodb.php
 
