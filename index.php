@@ -14,6 +14,7 @@ echo "Gompes!";
 $client = new GuzzleHttp\Client(['base_uri' => 'http://crassus-php.azurewebsites.net/']);
 // Send a request to https://foo.com/api/test
 $response = $client->request('GET', 'test');
+$response = $client->request('GET', 'testje');
 // Send a request to https://foo.com/root
-//$response = $client->request('GET', '/root');
+$response = $client->request('GET', '/root');
 ?>
