@@ -9,7 +9,9 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-echo "Gompes! Allemaggies wat mooi!";
+$tekst = "Een tekst met pseuso-json. Hebben we resultaat?<br/>";
+
+echo $tekst;
 // Create a client with a base URI
 $client = new Client([
     // Base URI is used with relative requests
@@ -24,12 +26,8 @@ $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
 
 if ($response->hasHeader('Content-Length')) {
-    echo "Blabla bestaat\n";
+    echo "Ja<br/>Code:",$code,"<br/>Reason:",$reason;
 } else {
-    echo "Geen blabla\n";
+    echo "Nee</br>Code:\",$code,\"<br/>Reason:\",$reason";
 }
-
-echo $code, "\n";
-echo $reason, "\n";
-
 ?>
