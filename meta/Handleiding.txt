@@ -59,11 +59,17 @@ Guzzle is een PHP framework waarin je HTTP requests en zo
 kan uitvoeren. Zegt het. Docs:
 http://docs.guzzlephp.org/en/latest/quickstart.html
 
+Als je MongoDB nog niet gedownload hebt, doe het alsnog.
+https://www.mongodb.com/download-center?jmp=nav#community
+
 MongoDB is de DB - in php is de syntax wat anders dan normaal
 http://php.net/manual/en/set.mongodb.php
 
 Meer docs van MongoDB in PHP
 http://mongodb.github.io/mongo-php-library/classes/client/#mongodbclient
+
+Beheer je database (kijken of dingen bestaan, toegevoegd zijn etc.) met Robomongo.
+https://robomongo.org/download - download dan versie 0.9.0 RC10
 
 Andere linkjes die voor niemand interessant zijn (wel gebruikt tijdens het opzetten van dit project)
 http://pecl.php.net/package/mongodb/1.1.8/windows
