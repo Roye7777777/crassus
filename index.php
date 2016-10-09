@@ -20,7 +20,7 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-$response = $client->get('http://crassus-php.azurewebsites.net/jayson/blabla.html');
+$response = $client->get('http://crassus-php.azurewebsites.net/meta/pseudojson.html');
 
 $code = $response->getStatusCode(); // kan 200 zijn
 $reason = $response->getReasonPhrase(); // OK
