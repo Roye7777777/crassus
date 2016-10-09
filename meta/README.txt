@@ -11,17 +11,15 @@ HOE ZET JE HET CRASSUS-PHP-PROJECT EEN BEETJE GOED OP
 
 0.4 Weet ik veel, lees tutorials on how to git https://guides.github.com/activities/hello-world/
 
-1.1 Log in met ftps (gebruik FileZilla of zo)
-
-FTPS
+1.1 Log in met ftps (gebruik FileZilla of zo) met de gegevens hieronder (we gebruiken FTPS):
 - username: 		is te vinden in postal.azure.com bij Instellingen > Eigenschappen, FTP-/IMPLEMENTATIEGEBRUIKER
 - ftps hostname: 	is te vinden in portal.azure.com bij Instellingen > Eigenschappen, FTPS HOSTNAAM
 - ftps wachtwoord:	0ur0b0r0s-PHP
 
-1.2 Ga in Filezilla in het venster links (met jouw mappenstructuur) naar de map waarin je PhpstormProjects hebt staan
-(meestal bij Users\[jouwnaam]\PhpstormProjects
+1.2 Ga in Filezilla in het venster links (met jouw lokale mappenstructuur) naar de map waarin je jouw PhpstormProjects hebt staan
+(meestal bij Users\[jouwnaam]\PhpstormProjects)
 
-1.3 Ga (venster links nog steeds) naar de map waarin 't project staat (dit geval 'crassus')
+1.3 Ga (venster links nog steeds) naar de map waarin jouw project opgeslagen staat (dit geval 'crassus')
 
 1.4 Verplaats vanuit de wwwroot van de site die je met FTPS in FileZilla geopend hebt (venster rechts) 
 	- de map vendor
