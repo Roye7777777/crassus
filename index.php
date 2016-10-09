@@ -62,4 +62,6 @@ foreach ($result as $entry) {
 //);
 //
 //echo "Wat hebben we hier '{$cursor->getInsertedId()}'";
+
+echo "Man Man Man";
 ?>
