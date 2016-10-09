@@ -46,6 +46,7 @@ foreach ($result as $entry) {
 }
 
 echo "JONGE";
+echo "Man Man Man";
 //$client = new MongoClient("mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939"); //MongoDB\Client?
 //$collection = $client->crassus->questions;
 //$cursor = $collection->find( [ 'question_nr' => 1 ] );
