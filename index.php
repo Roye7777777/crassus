@@ -29,9 +29,9 @@ $reason = $response->getReasonPhrase(); // Can be OK
 
 // An echo with success or not
 if ($response->hasHeader('Content-Length')) {
-    echo "SUCCESS. <br/>Code:",$code,"<br/>Reason:",$reason;
+    echo "SUCCESS. <br/>Code:",$code,"<br/>Reason:",$reason,"<br/>";
 } else {
-    echo "FAILURE. </br>Code:\",$code,\"<br/>Reason:\",$reason";
+    echo "FAILURE. </br>Code:\",$code,\"<br/>Reason:\",$reason","<br/>";
 }
 
 // Part 2: check if we can read from the database. Use the MongoDB-credentials as provided here to connect
@@ -47,9 +47,9 @@ $collection = $client->$dbname->$collname;
 // Set up cursor (i.e. kind of like a query): find every document where question_nr is 1
 $result = $collection->find( [ 'question_nr' => 1 ] );
 
-// Show all found results (documents)
+// Show all found results (documents), by showing document ID and question_nr
 foreach ($result as $entry) {
-    echo $entry['_id'], ': ', $entry['question_nr'], "\n";
+    echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
 }
 
 // This might be someting for inserting something. Not tested yet.
