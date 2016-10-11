@@ -11,6 +11,7 @@ $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = intval($_GET['nr']);
 if (is_nan($var) && is_null($var)) {
+    global $var;
     $var = intval(1);
 }
 $result=$collection->find([ 'question_nr' => $var ]);
