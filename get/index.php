@@ -9,8 +9,8 @@ $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/
 $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
-$var = '3';
+$var = 3;
 $result=$collection->find([ 'question_nr' => $var ]);
 header('Content-Type:application/json;charset=utf-8');
-echo json_encode($result);
+foreach ($result as $entry) {echo json_encode($entry);}
 ?>
