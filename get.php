@@ -11,4 +11,10 @@ use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->get('http://crassus-php.azurewebsites.net/getSomething.php');
-return $response;
+
+$code = $response->getStatusCode(); // Can be 200
+$reason = $response->getReasonPhrase(); // Can be OK
+echo $code;
+echo $reason;
+echo $response;
+?>
