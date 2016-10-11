@@ -11,7 +11,7 @@ $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = intval($_GET['nr']);
 if (is_nan($var) && is_null($var)) {
-    $var = 1;
+    $var = intval(1);
 }
 $result=$collection->find([ 'question_nr' => $var ]);
 header('Content-Type:application/json;charset=utf-8');
