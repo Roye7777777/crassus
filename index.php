@@ -13,6 +13,7 @@ use GuzzleHttp\Client;
 $tekst = "We gaan hier kijken of de get-request op het pseudojson.html-bestandje werkt.<br/>";
 echo $tekst;
 
+
 // Create client with Base-URI in it (referring to our cloud environment)
 $client = new Client([
     // Base URI is used with relative requests
@@ -50,6 +51,7 @@ $result = $collection->find( [ 'question_nr' => 1 ] );
 // Show all found results (documents), by showing document ID and question_nr
 foreach ($result as $entry) {
     echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
+    echo jscon_encode($entry);
 }
 
 // This might be someting for inserting something. Not tested yet.
