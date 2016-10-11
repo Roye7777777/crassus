@@ -13,7 +13,7 @@ $var = 1;
 if (!is_null($_GET['week_nr'])) {
     $var = intval($_GET['week_nr']);
 }
-$result=$collection->find([ 'week_nr' => $var ]);
+$result=$collection->find([ 'question_nr' => 1 ]);
 header('Content-Type:application/json;charset=utf-8');
 foreach ($result as $entry) {echo json_encode($entry);}
 ?>
