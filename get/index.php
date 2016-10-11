@@ -9,8 +9,8 @@ $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/
 $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
-$var = $_GET['nr'];
-if (is_null($var)) {
+$var = intval($_GET['nr']);
+if (is_nan($var) && is_null($var)) {
     $var = 1;
 }
 $result=$collection->find([ 'question_nr' => $var ]);
