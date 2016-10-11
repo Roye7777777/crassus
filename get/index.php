@@ -10,8 +10,7 @@ $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = '3';
-
 $result=$collection->find([ 'question_nr' => $var ]);
 header('Content-Type:application/json;charset=utf-8');
-foreach ($result as $entry) {echo json_encode($entry);}
+echo json_encode($result);
 ?>
