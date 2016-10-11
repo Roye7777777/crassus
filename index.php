@@ -52,16 +52,7 @@ $result = $collection->find( [ 'question_nr' => 1 ] );
 foreach ($result as $entry) {
     echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
     echo json_encode($entry);
+    json_encode($entry);
 }
 
-// This might be someting for inserting something. Not tested yet.
-//
-//$cursor = $collection->insertOne(
-//    [
-//        'question_nr' => 99,
-//        'question' => 'Does this work?'
-//    ]
-//);
-//
-//echo "Wat hebben we hier '{$cursor->getInsertedId()}'";
 ?>
