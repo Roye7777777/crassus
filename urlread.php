@@ -9,4 +9,5 @@ $var = $_GET["name"];
 $ver = $_GET["age"];
 echo "<h1>Hallo " . $_GET["name"] . "</h1>";
 echo "<h1>Hello " . $_GET["age"] . "</h1>";
+echo gettype($var);
 ?>
