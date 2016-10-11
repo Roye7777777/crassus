@@ -20,5 +20,5 @@ $collection = $client->$dbname->$collname;
 $result = $collection->find( [ 'question_nr' => 1 ] );
 
 // Show all found results (documents), by showing document ID and question_nr
-return $result;
+//return $result;
 ?>
