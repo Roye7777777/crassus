@@ -1,2 +1,6 @@
 local
 .idea
+composer.json
+composer.lock
+composer.phar
+vendor/
