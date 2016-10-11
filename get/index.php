@@ -10,10 +10,10 @@ $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = 1;
-if (!is_null($_GET['nr'])) {
-    $var = intval($_GET['nr']);
+if (!is_null($_GET['week_nr'])) {
+    $var = intval($_GET['week_nr']);
 }
-$result=$collection->find([ 'question_nr' => $var ]);
+$result=$collection->find([ 'week_nr' => $var ]);
 header('Content-Type:application/json;charset=utf-8');
 foreach ($result as $entry) {echo json_encode($entry);}
 ?>
