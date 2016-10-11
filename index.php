@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 // Part 1: check if these HTTP-requests work, we perform a GET.
-$tekst = "We gaan hier kijken of de get-request op het pseudojson.html-bestandje werkt.<br/>";
+$tekst = "We gaan hier kijken of de questions-request op het pseudojson.html-bestandje werkt.<br/>";
 echo $tekst;
 
 
