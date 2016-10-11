@@ -29,7 +29,7 @@ $collection = $client->$dbname->$collname;
 
 // Set up cursor (i.e. kind of like a query): find every document where question_nr is 1
 $result = $collection->find();
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
 // Show all found results (documents), by showing document ID and question_nr
 foreach ($result as $entry) {
