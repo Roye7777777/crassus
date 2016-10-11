@@ -51,7 +51,7 @@ $result = $collection->find( [ 'question_nr' => 1 ] );
 // Show all found results (documents), by showing document ID and question_nr
 foreach ($result as $entry) {
     echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
-    echo jscon_encode($entry);
+    echo json_encode($entry);
 }
 
 // This might be someting for inserting something. Not tested yet.
