@@ -16,5 +16,6 @@ $code = $response->getStatusCode(); // Can be 200
 $reason = $response->getReasonPhrase(); // Can be OK
 echo $code;
 echo $reason;
-echo $response;
+echo $response->getBody();
+echo $response->getHeaders();
 ?>
