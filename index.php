@@ -52,6 +52,7 @@ $result = $collection->find( [ 'week_nr' => 2 ] );
 foreach ($result as $entry) {
     echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
     echo json_encode($entry);
+    echo 'gekkigheid';
     //json_encode($entry);
 }
 
