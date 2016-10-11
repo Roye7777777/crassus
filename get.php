@@ -10,15 +10,11 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->get('http://crassus-php.azurewebsites.net/getSomething.php');
-
+$response = $client->get('http://crassus-php.azurewebsites.net/get');
 $code = $response->getStatusCode(); // Can be 200
 $reason = $response->getReasonPhrase(); // Can be OK
 echo $code;
 echo $reason;
 echo $response->getBody();
 echo $response->getHeaders();
-
-$homepage = file_get_contents('http://www.example.com/');
-echo $homepage;
 ?>
