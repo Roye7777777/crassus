@@ -46,7 +46,7 @@ $collname = 'questions';
 $collection = $client->$dbname->$collname;
 
 // Set up cursor (i.e. kind of like a query): find every document where question_nr is 1
-$result = $collection->find( [ 'question_nr' => 1 ] );
+$result = $collection->find( [ 'week_nr' => 2 ] );
 
 // Show all found results (documents), by showing document ID and question_nr
 foreach ($result as $entry) {
