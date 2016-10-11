@@ -9,12 +9,13 @@ $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/
 $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
-$var = intval($_GET['nr']);
-if (is_nan($var) && is_null($var)) {
-    global $var;
-    $var = intval(1);
+$var = 1;
+if (!is_null($_GET['nr'])) {
+    $var = intval($_GET['nr']);
 }
 $result=$collection->find([ 'question_nr' => $var ]);
 header('Content-Type:application/json;charset=utf-8');
 foreach ($result as $entry) {echo json_encode($entry);}
 ?>
+
+
