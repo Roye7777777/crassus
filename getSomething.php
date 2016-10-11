@@ -19,5 +19,5 @@ $collection = $client->$dbname->$collname;
 // Set up cursor (i.e. kind of like a query): find every document where question_nr is 1
 $result = $collection->find( [ 'question_nr' => 1 ] );
 
-echo $result->toArray();
+
 ?>
