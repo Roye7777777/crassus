@@ -20,10 +20,12 @@ $cursor = array();
 
 if (!is_null($_GET['tags'])) {
     $var = $_GET['tags'];
-    var_dump($var);
     $tags = explode(' ', $var);
-    var_dump($tags);
-    $cursor = array( 'tags' => array('$elemMatch' => array('$in' => $tags) ) );
+    $tagsList = array();
+    for ($x = 0; $x <= count($tags); $x++) {
+        array_push($tagsList, array('tags'=>$tags[$x]));
+    }
+    $cursor = array( '$and' => $tagsList );
 }
 
 $result = $collection->find( $cursor );
