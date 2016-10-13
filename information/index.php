@@ -21,14 +21,12 @@ $cursor = array();
 if (!is_null($_GET['tags'])) {
     $var = $_GET['tags'];
     $tags = explode(' ', $var);
-    print_r($tags);
     $tagsList = array();
     for ($x = 0; $x < count($tags); $x++) {
         array_push($tagsList, array('tags' => $tags[$x]));
     }
     $cursor = array( '$and' => $tagsList );
 }
-print_r($cursor);
 
 $result = $collection->find( $cursor );
 
