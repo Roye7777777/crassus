@@ -21,6 +21,7 @@ $cursor = array();
 if (!is_null($_GET['tags'])) {
     $var = $_GET['tags'];
     $tags = explode( '+', $var );
+    var_dump($tags);
     $cursor = array( 'tags' => array('$in' => $tags) );
 }
 
