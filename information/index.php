@@ -26,4 +26,6 @@ if (!is_null($_GET['tags'])) {
 
 $result = $collection->find( $cursor );
 
-echo json_encode($result);
+foreach ($result as $entry) {
+    echo $entry['_id'], ': ', $entry['title'], '; ';
+}
