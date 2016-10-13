@@ -21,14 +21,13 @@ $cursor = array();
 if (!is_null($_GET['tags'])) {
     $var = $_GET['tags'];
     $tags = explode(' ', $var);
+    print_r($tags);
     $tagsList = array();
     for ($x = 0; $x <= count($tags); $x++) {
         array_push($tagsList, array('tags'=>$tags[$x]));
     }
-    var_dump($tagsList);
     print_r($tagsList);
     $cursor = array( '$and' => $tagsList );
-    var_dump($cursor);
     print_r($cursor);
 }
 
