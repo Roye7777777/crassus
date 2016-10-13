@@ -20,5 +20,3 @@ foreach ($result as $entry) {
     echo json_encode($entry);
 }
 ?>
-
-
