@@ -25,7 +25,11 @@ if (!is_null($_GET['tags'])) {
     for ($x = 0; $x <= count($tags); $x++) {
         array_push($tagsList, array('tags'=>$tags[$x]));
     }
+    var_dump($tagsList);
+    print_r($tagsList);
     $cursor = array( '$and' => $tagsList );
+    var_dump($cursor);
+    print_r($cursor);
 }
 
 $result = $collection->find( $cursor );
