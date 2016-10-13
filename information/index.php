@@ -27,5 +27,5 @@ if (!is_null($_GET['tags'])) {
 $result = $collection->find( $cursor );
 
 foreach ($result as $entry) {
-    echo 'ID:', $entry['_id'], '- Title:', $entry['title'], "<br/>";
+    echo 'ID:', $entry['_id'], '- Title:', $entry['title'];
 }
