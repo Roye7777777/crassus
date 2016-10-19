@@ -16,18 +16,31 @@ $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = 1;
-$result = $collection->find( [] );
-if (!is_null($_GET['week_nr'])) {
-    $var = intval($_GET['week_nr']);
-    $result = $collection->find( [ 'week_nr' => $var ] );
-}
 header('Content-Type:application/json;charset=utf-8');
 
-$json_result = [];
-foreach ($result as $entry) {
-    echo $entry;
+$query = array();
 
-    array_push($json_result, json_encode($entry));
+if (!is_null($_GET['week_nr'])) {
+    $var = intval($_GET['week_nr']);
+    $query = array( 'week_nr' => $var );
 }
-echo json_encode($json_result);
+
+$cursor = $collection->find( $query );
+
+$i = 0;
+$return = [];
+foreach($cursor as $item){
+    if (is_null($item['week_nr']))
+        return;
+
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
+        'week_nr'=>$item['week_nr'],
+        'question_nr'=>$item['question_nr'],
+        'question'=>$item['question'],
+        'options'=>$item['options']
+    );
+    $i++;
+}
+echo json_encode($return, JSON_FORCE_OBJECT);
 ?>
