@@ -21,25 +21,28 @@ header('Content-Type:application/json;charset=utf-8');
 // This $query will be the content that comes between
 $query = array();
 
+if (!is_null($_GET['id'])) {
+    $var = $_GET['id'];
+    $query = array('_id' => new MongoDB\BSON\ObjectId($var) );
+}
+
 $cursor = $collection->find( $query );
 
-//$i = 0;
-//$return = [];
-//foreach($cursor as $item){
-//    $return[$i] = array(
-//        '_id'=>utf8_encode($item['_id']),
-//        'title'=>$item['title'],
-//        'text'=>$item['text'],
-//        'date'=>$item['data'],
-//        'tags'=>$item['tags']
-//    );
-//    $i++;
-//}
-//echo json_encode($return, JSON_FORCE_OBJECT);
-
+$i = 0;
+$return = [];
 foreach($cursor as $item){
-    echo json_encode($item);
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
+        'breakfast'=>$item['breakfast'],
+        'lunch'=>$item['lunch'],
+        'dinner'=>$item['dinner'],
+        'snacks'=>$item['snacks'],
+        'post_date'=>$item['post_date'],
+        'number_week'=>$item['number_week']
+    );
+    $i++;
 }
+echo json_encode($return, JSON_FORCE_OBJECT);
 
 /*    $verb = $_SERVER['REQUEST_METHOD'];
 
