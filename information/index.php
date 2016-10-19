@@ -26,7 +26,7 @@ $theObjId = new MongoId($userid);
     $query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') );
 }*/
 
-$cursor = $collection->findOne( array( "_id" => $theObjId ) );
+$cursor = $collection->find( array( "title" => "De kracht van de wortel" ) );
 
 $i = 0;
 $return = [];
