@@ -22,13 +22,12 @@ echo json_encode($result, JSON_FORCE_OBJECT);
 
 $i = 0;
 $return = array();
-foreach($cursor as $item){
+foreach($result as $item){
     $return[$i] = array(
         '_id'=>utf8_encode($item['_id']),
         'title'=>$item['title'],
         'text'=>$item['text'],
-        'date'=>$item['data'],
-        'tags'=>utf8_encode($item['tags'])
+        'date'=>$item['data']
     );
     $i++;
 }
