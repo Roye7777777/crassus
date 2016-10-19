@@ -16,22 +16,24 @@ $dbname='crassus';
 $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$cursor = array();
+$query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') ); //array();
 
-if (!is_null($_GET['tags'])) {
-    $var = $_GET['tags'];
-    $tags = explode(' ', $var);
-    $tagsList = array();
-    for ($x = 0; $x < count($tags); $x++) {
-        array_push($tagsList, array('tags' => $tags[$x]));
-    }
-    $cursor = array( '$and' => $tagsList );
+/*if (!is_null($_GET['id'])) {
+    $var = $_GET['id'];
+    $query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') );
+}*/
+
+$cursor = $collection->find( $query );
+
+$i = 0;
+$return = [];
+foreach($cursor as $item){
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
+        'title'=>$item['title'],
+        'text'=>$item['text'],
+        'date'=>$item['data']
+    );
+    $i++;
 }
-
-$result = $collection->findOne( $cursor );
-
-echo json_encode($result);
-
-//foreach ($result as $entry) {
-//    echo json_encode($entry);
-//}
+echo json_encode($return, JSON_FORCE_OBJECT);
