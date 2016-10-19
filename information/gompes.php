@@ -18,7 +18,18 @@ $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $cursor = array();
 $result = $collection->findOne( $cursor );
-echo json_encode($result);
-foreach ($result as $item) {
-    echo $item['_id'];
+echo json_encode($result, JSON_FORCE_OBJECT);
+
+$i = 0;
+$return = array();
+foreach($cursor as $item){
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
+        'title'=>$item['title'],
+        'text'=>$item['text'],
+        'date'=>$item['data'],
+        'tags'=>utf8_encode($item['tags'])
+    );
+    $i++;
 }
+echo json_encode($return, JSON_FORCE_OBJECT);
