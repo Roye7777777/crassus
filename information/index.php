@@ -17,16 +17,23 @@ $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-$userid = '57ff490fb44439ac4305b120';
-$theObjId = new MongoId($userid);
-//$query = array( "_id" => $theObjId );
-
-/*if (!is_null($_GET['id'])) {
+if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-    $query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') );
+    $query = array( '_id' => new MongoId('57ff490fb44439ac4305b120') );
+}
+
+/*if (!is_null($_GET['tags'])) {
+    $var = $_GET['tags'];
+    $tags = explode(' ', $var);
+    $tagsList = array();
+    for ($x = 0; $x < count($tags); $x++) {
+        array_push($tagsList, array('tags' => $tags[$x]));
+    }
+    $cursor = array( '$and' => $tagsList );
 }*/
 
-$cursor = $collection->find( array( "title" => "De kracht van de wortel" ) );
+$query = array();
+$cursor = $collection->find( $query );
 
 $i = 0;
 $return = [];
