@@ -41,7 +41,6 @@ foreach($cursor as $item){
     echo json_encode($item);
 }
 
-
 /*    $verb = $_SERVER['REQUEST_METHOD'];
 
     if ($verb == 'GET')
