@@ -29,10 +29,9 @@ $cursor = $collection->find( $query );
 
 $i = 0;
 $return = [];
-foreach($cursor as $item){
-    if (is_null($item['week_nr']))
-        return;
-
+foreach($cursor as $item) {
+//    if (is_null($item['week_nr']))
+//        return;
     $return[$i] = array(
         '_id'=>utf8_encode($item['_id']),
         'week_nr'=>$item['week_nr'],
