@@ -30,10 +30,11 @@ if (!is_null($_GET['tags'])) {
 
 $result = $collection->find( $cursor );
 
-$json_result = array();
+$json_result = [];
 foreach ($result as $entry) {
+    echo $entry;
+
     array_push($json_result, json_encode($entry));
 }
-
-echo $json_result;
+echo json_encode($json_result);
 ?>

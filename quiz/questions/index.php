@@ -23,9 +23,11 @@ if (!is_null($_GET['week_nr'])) {
 }
 header('Content-Type:application/json;charset=utf-8');
 
-$json_result = array();
+$json_result = [];
 foreach ($result as $entry) {
+    echo $entry;
+
     array_push($json_result, json_encode($entry));
 }
-echo $json_result;
+echo json_encode($json_result);
 ?>
