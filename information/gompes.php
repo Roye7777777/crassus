@@ -19,3 +19,6 @@ header('Content-Type:application/json;charset=utf-8');
 $cursor = array();
 $result = $collection->findOne( $cursor );
 echo json_encode($result);
+foreach ($result as $item) {
+    echo $item['_id'];
+}
