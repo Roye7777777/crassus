@@ -19,13 +19,9 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 
 if (!is_null($_GET['id'])) {
-    $var = utf8_encode($_GET['id']);
-    echo $var;
-    echo is_string($var);
-
-    $query = array( '_id' => new MongoId(utf8_encode($_GET['id'])) );
+    $var = $_GET['id'];
+    $query = array( '_id' => new \MongoId($var) );
 }
-print_r($query);
 
 $cursor = $collection->find( $query );
 
