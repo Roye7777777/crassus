@@ -17,22 +17,7 @@ $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-if (!is_null($_GET['id'])) {
-    $var = $_GET['id'];
-    $query = array( '_id' => new MongoId('57ff490fb44439ac4305b120') );
-}
-
-/*if (!is_null($_GET['tags'])) {
-    $var = $_GET['tags'];
-    $tags = explode(' ', $var);
-    $tagsList = array();
-    for ($x = 0; $x < count($tags); $x++) {
-        array_push($tagsList, array('tags' => $tags[$x]));
-    }
-    $cursor = array( '$and' => $tagsList );
-}*/
-
-$query = array( '_id' => new MongoId('57ff490fb44439ac4305b120') );
+$query = array( '_id' => new MongoDB\BSON\ObjectId('57ff490fb44439ac4305b120') );
 $cursor = $collection->find( $query );
 
 $i = 0;
