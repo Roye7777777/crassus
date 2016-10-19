@@ -11,16 +11,28 @@ $client = new Client([
     'base_uri' => 'http://crassus-php.azurewebsites.net',
     'timeout'  => 10.0,
 ]);
+
 $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
 $dbname='crassus';
 $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
+// This $query will be the content that comes between
 $query = array();
 
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-    $query = array( '_id' => new MongoDB\BSON\ObjectId($var) );
+    array_push( $query, array('_id' => new MongoDB\BSON\ObjectId($var) ) );
+}
+
+if (!is_null($_GET['tags'])) {
+    $var = $_GET['tags'];
+    $tags = explode(' ', $var);
+    $tagsList = array();
+    for ($x = 0; $x < count($tags); $x++) {
+        array_push($tagsList, array('tags' => $tags[$x]));
+    }
+    array_push( $query, array( '$and' => $tagsList ) );
 }
 
 $cursor = $collection->find( $query );
