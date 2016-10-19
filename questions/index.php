@@ -16,7 +16,6 @@ if (!is_null($_GET['week_nr'])) {
 header('Content-Type:application/json;charset=utf-8');
 $result = $collection->find( [ 'week_nr' => $var ] );
 foreach ($result as $entry) {
-    //echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
     echo json_encode($entry);
 }
 ?>
