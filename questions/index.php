@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Roy
- * Date: 13-10-2016
- * Time: 10:28
- */
-require '../../vendor/autoload.php';
+require '../vendor/autoload.php';
 use GuzzleHttp\Client;
 $client = new Client([
     'base_uri' => 'http://crassus-php.azurewebsites.net',
@@ -16,18 +10,12 @@ $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = 1;
-$result = $collection->find( [] );
 if (!is_null($_GET['week_nr'])) {
     $var = intval($_GET['week_nr']);
-    $result = $collection->find( [ 'week_nr' => $var ] );
 }
 header('Content-Type:application/json;charset=utf-8');
-
-$json_result = [];
+$result = $collection->find( [ 'week_nr' => $var ] );
 foreach ($result as $entry) {
-    echo $entry;
-
-    array_push($json_result, json_encode($entry));
+    echo json_encode($entry);
 }
-echo json_encode($json_result);
 ?>

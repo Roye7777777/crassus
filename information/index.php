@@ -28,8 +28,10 @@ if (!is_null($_GET['tags'])) {
     $cursor = array( '$and' => $tagsList );
 }
 
-$result = $collection->find( $cursor );
+$result = $collection->findOne( $cursor );
 
-foreach ($result as $entry) {
-    echo json_encode($entry);
-}
+echo json_encode($result);
+
+//foreach ($result as $entry) {
+//    echo json_encode($entry);
+//}
