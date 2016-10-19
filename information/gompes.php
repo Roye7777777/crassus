@@ -20,13 +20,13 @@ $query = array();
 $cursor = $collection->find( $query );
 
 $i = 0;
-//$return = [];
+$return = [];
 foreach($cursor as $item){
     $return[$i] = array(
         'title'=>$item['title'],
         'text'=>$item['text'],
         'date'=>$item['data']
     );
-    echo json_encode($return[$i], JSON_FORCE_OBJECT);
     $i++;
 }
+echo json_encode($return, JSON_FORCE_OBJECT);
