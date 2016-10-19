@@ -16,19 +16,17 @@ $dbname='crassus';
 $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$cursor = array();
-$result = $collection->findOne( $cursor );
-echo json_encode($result, JSON_FORCE_OBJECT);
+$query = array();
+$cursor = $collection->find( $query );
 
 $i = 0;
-$return = array();
-foreach($result as $item){
+//$return = [];
+foreach($cursor as $item){
     $return[$i] = array(
-        '_id'=>utf8_encode($item['_id']),
         'title'=>$item['title'],
         'text'=>$item['text'],
         'date'=>$item['data']
     );
+    echo json_encode($return[$i], JSON_FORCE_OBJECT);
     $i++;
 }
-echo json_encode($return, JSON_FORCE_OBJECT);
