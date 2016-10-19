@@ -21,10 +21,11 @@ $query = array();
 if (!is_null($_GET['id'])) {
     $var = utf8_encode($_GET['id']);
     echo $var;
+    echo is_string($var);
 
-    $query = array( '_id' => new MongoId($var) );
+    $query = array( '_id' => new MongoId(utf8_encode($_GET['id'])) );
 }
-var_dump($query);
+print_r($query);
 
 $cursor = $collection->find( $query );
 
