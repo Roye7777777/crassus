@@ -32,7 +32,7 @@ if (!is_null($_GET['id'])) {
     $cursor = array( '$and' => $tagsList );
 }*/
 
-$query = array();
+$query = array( '_id' => new MongoId('57ff490fb44439ac4305b120') );
 $cursor = $collection->find( $query );
 
 $i = 0;
