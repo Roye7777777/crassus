@@ -23,6 +23,7 @@ $i = 0;
 $return = [];
 foreach($cursor as $item){
     $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
         'title'=>$item['title'],
         'text'=>$item['text'],
         'date'=>$item['data']
