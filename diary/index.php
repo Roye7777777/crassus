@@ -38,7 +38,8 @@ foreach($cursor as $item){
         'dinner'=>$item['dinner'],
         'snacks'=>$item['snacks'],
         'post_date'=>$item['post_date'],
-        'number_week'=>$item['number_week']
+        'number_week'=>$item['number_week'],
+        'users_id'=>$item['users_id'],
     );
     $i++;
 }
