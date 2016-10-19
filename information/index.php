@@ -16,14 +16,17 @@ $dbname='crassus';
 $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') ); //array();
+
+$userid = '57ff490fb44439ac4305b120';
+$theObjId = new MongoId($userid);
+//$query = array( "_id" => $theObjId );
 
 /*if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
     $query = array( '_id' => new \MongoId('57ff490fb44439ac4305b120') );
 }*/
 
-$cursor = $collection->find( $query );
+$cursor = $collection->find( array( "_id" => $theObjId ) );
 
 $i = 0;
 $return = [];
