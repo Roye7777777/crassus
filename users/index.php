@@ -22,7 +22,7 @@ if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
     $cursor = array( '_id' => $var );
 }
-// fu git
+
 $result = $collection->find( $cursor );
 
 foreach ($result as $entry) {
