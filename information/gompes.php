@@ -17,6 +17,12 @@ $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $query = array();
+
+if (!is_null($_GET['id'])) {
+    $var = $_GET['id'];
+    $query = array( '_id' => new MongoId($var) );
+}
+
 $cursor = $collection->find( $query );
 
 $i = 0;
