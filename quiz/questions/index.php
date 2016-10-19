@@ -16,12 +16,14 @@ $dbname='crassus';
 $collname='questions';
 $collection=$client->$dbname->$collname;
 $var = 1;
-$query = $collection->find( [] );
+header('Content-Type:application/json;charset=utf-8');
+
+$query = array();
+
 if (!is_null($_GET['week_nr'])) {
     $var = intval($_GET['week_nr']);
-    $query = $collection->find( [ 'week_nr' => $var ] );
+    $query = array( 'week_nr' => $var );
 }
-header('Content-Type:application/json;charset=utf-8');
 
 $cursor = $collection->find( $query );
 
