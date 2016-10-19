@@ -1,0 +1,547 @@
+swagger: '2.0'
+info:
+  title: Crassus API
+  description: The Crassus API 
+  version: "1.0.0.0"
+
+host: crassus-php.azurewebsites.net
+
+schemes:
+  - http
+  - https
+basePath: /api
+produces:
+  - application/json
+paths:
+  /Users:
+    get:
+      summary: Users
+      description: A collection of users to manage
+      tags:
+        - User
+      responses:
+        200:
+          description: Returns all users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        404:
+          description: User not found
+    post:
+      summary: User addition
+      description: Add a new user
+      tags:
+        - User
+      responses:
+        200:
+          description: Post new user
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        400:
+          description: Failed to add new user
+  /Users/{id}:
+    get:
+      summary: Specific user
+      description: Return specific user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: user id
+        - name: x-authtoken
+          in: header
+          type: string
+      tags:
+        - User
+      responses:
+        200:
+          description: User found
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      summary: User adjustment
+      description: Edit data of an existing user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: user id
+        - name: x-authtoken
+          in: header
+          type: string
+      tags:
+        - User
+      responses:
+        200:
+          description: Edit existing user
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        400:
+          description: Failed to add new user
+  /Users/{id}/Food_Diary:
+    get:
+      summary: Get food diary reports
+      description: Get food diary reports of a specific user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      tags:
+        - Diary
+        - User
+      responses:
+        200:
+          description: All food diaries from a specific user
+          schema:
+            $ref: '#/definitions/Food_Diary'
+        400:
+          description: Failure getting food diaries
+    post:
+      summary: Post food diary reports
+      description: A specific user posts a food diary 
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: breakfast
+          in: formData
+          type: string
+          required: false
+        - name: lunch
+          in: formData
+          type: string
+          required: false
+        - name: dinner
+          in: formData
+          type: string
+          required: false
+        - name: snacks
+          in: formData
+          type: string
+          required: false
+        - name: post_date
+          in: formData
+          type: string
+          format: date-time
+          required: true
+        - name: number_week
+          in: formData
+          type: integer
+          required: true
+      tags:
+        - Diary
+        - User
+      responses:
+        200: 
+          description: Success posting food diary
+          schema:
+            $ref: '#/definitions/Food_Diary'
+        201:
+          description: Food diary report created.
+          schema:
+            $ref: '#/definitions/Food_Diary'
+        400:
+          description: Bad request
+  /Users/{id}/Exercise_Diary:
+    get:
+      summary: Get exercise diary reports
+      description: Get exercise diary reports of a specific user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      tags:
+        - Diary
+        - User
+      responses:
+        200:
+          description: All exercise diaries from a specific user
+          schema:
+            $ref: '#/definitions/Exercise_Diary'
+        400:
+          description: Failure getting exercise diaries
+    post:
+      summary: Post exercise diary reports
+      description: A specific user posts an exercise diary 
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: exercises
+          in: formData
+          type: string
+          required: true
+      tags:
+        - Diary
+        - User
+      responses:
+        200: 
+          description: Success posting exercise diary
+          schema:
+            $ref: '#/definitions/Exercise_Diary'
+        201:
+          description: Food exercise report created.
+          schema:
+            $ref: '#/definitions/Exercise_Diary'
+        400:
+          description: Bad request
+  /Users/{id}/Scores:
+    get:
+      summary: Get scores 
+      description: Get scores by users
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: number_week
+          in: formData
+          type: integer
+          required: true
+      tags:
+        - Quiz
+        - User
+      responses:
+        200:
+          description: Success retrieving scores of user
+        400:
+          description: Failed to retrieve scores of user
+    post:
+      summary: Post score
+      description: Post score for certain week
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: number_week
+          in: formData
+          type: integer
+          required: true
+      tags:
+        - Quiz
+        - User
+      responses: 
+        200:
+          description: Success posting scores
+        400: 
+          description: Failed to post scores
+  /Users/{id}/Profile:
+    get:
+      summary: Get profile of a specific user
+      description: Get all information of a specific user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: length
+          in: formData
+          type: number
+          format: double
+        - name: weight
+          in: formData
+          type: number
+          format: double
+        - name: date_of_birth
+          in: formData
+          type: string
+          format: date
+        - name: gender
+          in: formData
+          type: string
+      tags:
+        - Profile
+        - User
+      responses:
+        200:
+          description: Get profiles of a specific users
+          schema:
+            $ref: '#/definitions/Profile'
+        400:
+          description: Failed to receive a profile
+    put:
+      summary: Update profile information
+      description: Profile information
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: length
+          in: formData
+          type: number
+          format: double
+        - name: weight
+          in: formData
+          type: number
+          format: double
+        - name: date_of_birth
+          in: formData
+          type: string
+          format: date
+        - name: gender
+          in: formData
+          type: string
+      tags: 
+        - Profile
+        - User
+      responses:
+        200:
+          description: Success editing profile information
+          schema:
+            $ref: '#/definitions/Profile'
+        400:
+          description: Failed to save changes to profile
+
+  /Questions:
+    get:
+      summary: Get questions
+      description: Get questions to be answered by users
+      parameters:
+        - name: number_week
+          in: formData
+          type: integer
+          required: true
+        - name: options
+          in: header
+          type: array
+          items: {
+            "type": "string",
+            "minimum": 3,
+            "maximum": 5
+          }
+          required: true
+        - name: correct_answer
+          in: header
+          type: integer
+          required: true
+      tags: 
+        - Quiz
+      responses:
+        200:
+          description: Questions received
+          schema:
+            $ref: '#/definitions/Question'
+        400:
+          description: Failed to receive questions
+  /Challenges:
+    get:
+      summary: Challenges
+      description: Array of challenges
+      tags:
+        - Challenge
+      responses:
+        200:
+          description: Returns all challenges.
+          schema:
+            $ref: '#/definitions/Challenge'
+        400:
+          description: Bad request
+        404:
+          description: Challenges not found
+  /Challenge/{week}:
+    get:
+      summary: Challenges
+      description: Array of challenges for the given number of the week
+      parameters:
+        - name: week
+          in: path
+          type: integer
+          required: true
+      tags:
+        - Challenge
+      responses:
+        200:
+          description: returns all challenges from this week.
+          schema:
+            $ref: '#/definitions/Challenge'
+        400:
+          description: Bad request
+        404:
+          description: Challenges not found
+  /Information:
+    get:
+      summary: Information
+      description: All information
+      tags:
+        - Information
+      responses:
+        200:
+          description: Returns all information
+          schema:
+            $ref: '#/definitions/Information'
+        400: 
+          description: Bad request
+        404:
+          description: Information not found
+  /Information/{id}:
+    get:
+      summary: Information
+      description: specific information
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      tags:
+        - information
+      responses:
+        200:
+          description: Returns specific information
+          schema:
+            $ref: '#/definitions/Information'
+        400: 
+          description: Bad request
+        404:
+          description: Information not found
+  /Motivatie:
+    get:
+      summary: Motivation
+      description: Show motivation
+      tags:
+        - Motivation
+      responses:
+        200:
+          description: Return motivation
+          schema:
+            $ref: '#/definitions/Motivation'
+        400:
+          description: Bad request
+        404:
+          description: Motivation not found
+definitions:
+  User:
+    type: object
+    properties:
+      first_name:
+        type: string
+        description: first name of the user
+      last_name:
+        type: string
+        description: last name of the user
+      username:
+        type: string
+        description: username
+      user_id:
+        type: integer
+        description: id of the user
+      attendant_id:
+        type: integer
+        description: id of the attendant
+  Food_Diary:
+    type: object
+    properties:
+      diary_id:
+        type: integer
+        description: id of diary
+      breakfast:
+        type: string
+        description: entry of breakfast report
+      lunch:
+        type: string
+        description: entry of lunch report
+      dinner:
+        type: string
+        description: entry of dinner report
+      snacks:
+        type: string
+        description: entry of snack report
+      post_date:
+        type: string
+        format: date-time
+        description: date and time of report being posted
+      number_week:
+          type: integer
+          description: number of week of report being posted
+  Exercise_Diary:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of diary
+      exercises:
+        type: string
+        description: entry of the exercise report
+  Question:
+    type: object
+    properties: 
+      number_week:
+        type: integer
+        description: number of the week related to these questions
+      options:
+        type: array
+        items: {
+          "type": "string",
+          "minimum": 3,
+          "maximum": 5
+        }
+        description: list of options for a question
+      correct_answer:
+        type: integer
+        description: correct answer of the given options
+  Profile:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of profile
+      length:
+        type: number
+        format: double
+        description: length
+      weight:
+        type: number
+        format: double
+        description: weight
+      date_of_birth:
+        type: string
+        format: date
+        description: date of birth
+      gender:
+        type: string
+        description: gender
+  Challenge:
+    type: object
+    properties:
+      challenge_id:
+        type: integer
+        description: id of a challenge
+      challenge:
+        type: string
+        description: name of the challenge
+  Information:
+    type: object
+    properties:
+      informatie_id:
+        type: integer
+        description: id of information
+      titel:
+        type: string
+        description: title
+      information:
+        type: string
+        description: information
+      image_url:
+        type: string
+        description: url for image
+  Motivation:
+    type: object
+    properties:
+      motivatie_id:
+        type: integer
+        description: id of motivation
+      motivatie:
+        type: string
+        description: motivation

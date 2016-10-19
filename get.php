@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->get('http://crassus-php.azurewebsites.net/get');
+$response = $client->get('http://crassus-php.azurewebsites.net/questions');
 $code = $response->getStatusCode(); // Can be 200
 $reason = $response->getReasonPhrase(); // Can be OK
 echo $code;
