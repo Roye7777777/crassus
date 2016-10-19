@@ -20,7 +20,7 @@ $cursor = array();
 
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-    $cursor = array( '_id' => $var );
+    $cursor = array( '_id' => new MongoDB\BSON\ObjectId($var) );
 }
 
 $result = $collection->find( $cursor );
