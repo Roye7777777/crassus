@@ -16,8 +16,13 @@ $dbname='crassus';
 $collname='information';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
+$query = array();
 
-$query = array( '_id' => new MongoDB\BSON\ObjectId('57ff490fb44439ac4305b120') );
+if (!is_null($_GET['id'])) {
+    $var = $_GET['id'];
+    $query = array( '_id' => new MongoDB\BSON\ObjectId($var) );
+}
+
 $cursor = $collection->find( $query );
 
 $i = 0;
