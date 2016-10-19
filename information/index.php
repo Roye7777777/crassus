@@ -22,8 +22,7 @@ $query = array();
 
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-//    $query = array('_id' => new MongoDB\BSON\ObjectId($var) );
-    array_push($query, array('_id' => new MongoDB\BSON\ObjectId($var) ) );
+    $query = array('_id' => new MongoDB\BSON\ObjectId($var) );
 }
 
 if (!is_null($_GET['tags'])) {
@@ -33,8 +32,7 @@ if (!is_null($_GET['tags'])) {
     for ($x = 0; $x < count($tags); $x++) {
         array_push($tagsList, array('tags' => $tags[$x]));
     }
-//    $query = array( '$and' => $tagsList );
-    array_push($query, array( '$and' => $tagsList ) );
+    $query = array( '$and' => $tagsList );
 }
 
 $cursor = $collection->find( $query );
