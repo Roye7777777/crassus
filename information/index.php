@@ -34,5 +34,6 @@ $json_result = array();
 foreach ($result as $entry) {
     array_push($json_result, json_encode($entry));
 }
-?>
+
 echo $json_result;
+?>
