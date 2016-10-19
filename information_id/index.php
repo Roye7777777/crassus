@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Roy
+ * Date: 13-10-2016
+ * Time: 13:25
+ */
 require '../vendor/autoload.php';
 use GuzzleHttp\Client;
 $client = new Client([
@@ -7,16 +13,15 @@ $client = new Client([
 ]);
 $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
 $dbname='crassus';
-$collname='questions';
+$collname='information';
 $collection=$client->$dbname->$collname;
-$var = 1;
-if (!is_null($_GET['week_nr'])) {
-    $var = intval($_GET['week_nr']);
-}
 header('Content-Type:application/json;charset=utf-8');
-$result = $collection->find( [ 'week_nr' => $var ] );
+$cursor = array();
+
+$var = $_GET['id'];
+
+$result = $collection->find( ['_id' => $var ] );
+
 foreach ($result as $entry) {
-    //echo 'Document ID:', $entry['_id'], '<br/>Question_nr:', $entry['question_nr'], "<br/>";
     echo json_encode($entry);
 }
-?>
