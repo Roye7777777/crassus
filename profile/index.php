@@ -2,9 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: Emiel
- * Date: 19-10-2016
- * Time: 10:31
+ * Date: 10/20/2016
+ * Time: 2:34 PM
  */
+
 require '../vendor/autoload.php';
 use GuzzleHttp\Client;
 $client = new Client([
@@ -28,5 +29,3 @@ $result = $collection->find( $cursor );
 foreach ($result as $entry) {
     echo json_encode($entry);
 }
-
-?>
