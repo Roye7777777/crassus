@@ -16,10 +16,12 @@ $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/
 $dbname='crassus';
 $collname='users';
 $collection=$client->$dbname->$collname;
-header('Content-Type:application/json;charset=utf-8');
+//header('Content-Type:application/json;charset=utf-8');
 // This $query will be the content that comes between
 $query = array('name' => $_GET['name'], 'age' => $_GET['age']);
 
 $cursor = $collection->insertOne( $query );
+$insertOne = $collection->insertOne($query);
 
-echo 'lol';
+printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
+var_dump($insertOne->getInsertedId());
