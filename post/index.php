@@ -12,7 +12,9 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-if (is_null($_POST['name']) || is_null($_POST['age'])) {
+echo($_POST['name']);
+
+/*if (is_null($_POST['name']) || is_null($_POST['age'])) {
     echo 'Not all variables specified';
     return 'FAILED';
 } else {
@@ -27,4 +29,4 @@ if (is_null($_POST['name']) || is_null($_POST['age'])) {
 
     printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
     var_dump($insertOne->getInsertedId());
-}
+}*/
