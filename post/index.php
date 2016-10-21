@@ -12,6 +12,10 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
+if (is_null($_GET['name']) || is_null($_GET['age']) ) {
+    return 'FAILED';
+}
+
 $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
 $dbname='crassus';
 $collname='users';
