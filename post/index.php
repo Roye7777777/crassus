@@ -14,18 +14,18 @@ $client = new Client([
 
 if (is_null($_GET['name']) || is_null($_GET['age']) ) {
     return 'FAILED';
-}
-
-$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
-$dbname='crassus';
-$collname='users';
-$collection=$client->$dbname->$collname;
+} else {
+    $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+    $dbname = 'crassus';
+    $collname = 'users';
+    $collection = $client->$dbname->$collname;
 //header('Content-Type:application/json;charset=utf-8');
 // This $query will be the content that comes between
-$query = array('name' => $_GET['name'], 'age' => $_GET['age']);
+    $query = array('name' => $_GET['name'], 'age' => $_GET['age']);
 
-$cursor = $collection->insertOne( $query );
-$insertOne = $collection->insertOne($query);
+    $cursor = $collection->insertOne($query);
+    $insertOne = $collection->insertOne($query);
 
-printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
-var_dump($insertOne->getInsertedId());
+    printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
+    var_dump($insertOne->getInsertedId());
+}
