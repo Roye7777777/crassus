@@ -6,19 +6,12 @@
  * Time: 10:31
  */
 require '../vendor/autoload.php';
-use GuzzleHttp\Client;
-$client = new Client([
-    'base_uri' => 'http://crassus-php.azurewebsites.net',
-    'timeout'  => 10.0,
-]);
 
-echo($_POST['name']);
-
-/*if (is_null($_POST['name']) || is_null($_POST['age'])) {
-    echo 'Not all variables specified';
-    return 'FAILED';
-} else {
-    $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+//if (is_null($_POST['name']) || is_null($_POST['age'])) {
+//    echo 'Not all variables specified';
+//    return 'FAILED';
+//} else {
+    /*$client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
     $dbname = 'crassus';
     $collname = 'users';
     $collection = $client->$dbname->$collname;
@@ -28,5 +21,11 @@ echo($_POST['name']);
     $insertOne = $collection->insertOne($query);
 
     printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
-    var_dump($insertOne->getInsertedId());
-}*/
+    var_dump($insertOne->getInsertedId());*/
+
+    $var = $_GET["name"];
+    $ver = $_GET["age"];
+    echo "<h1>Hallo " . $_GET["name"] . "</h1>";
+    echo "<h1>Hello " . $_GET["age"] . "</h1>";
+
+//}
