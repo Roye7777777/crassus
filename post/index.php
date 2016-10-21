@@ -23,9 +23,9 @@ require '../vendor/autoload.php';
     printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
     var_dump($insertOne->getInsertedId());*/
 
-    $var = $_GET["name"];
-    $ver = $_GET["age"];
-    echo "<h1>Hallo " . $_GET["name"] . "</h1>";
-    echo "<h1>Hello " . $_GET["age"] . "</h1>";
+    $var = $_POST["name"];
+    $ver = $_POST["age"];
+    echo "<h1>Hallo " . $var . "</h1>";
+    echo "<h1>Hello " . $ver . "</h1>";
 
 //}
