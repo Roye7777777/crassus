@@ -7,11 +7,11 @@
  */
 require '../vendor/autoload.php';
 
-//if (is_null($_POST['name']) || is_null($_POST['age'])) {
-//    echo 'Not all variables specified';
-//    return 'FAILED';
-//} else {
-    /*$client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+if (is_null($_POST['name']) || is_null($_POST['age'])) {
+    echo 'Not all variables specified';
+    return 'FAILED';
+} else {
+    $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
     $dbname = 'crassus';
     $collname = 'users';
     $collection = $client->$dbname->$collname;
@@ -21,11 +21,5 @@ require '../vendor/autoload.php';
     $insertOne = $collection->insertOne($query);
 
     printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
-    var_dump($insertOne->getInsertedId());*/
-
-    $var = $_POST["name"];
-    $ver = $_POST["age"];
-    echo "<h1>Hallo " . $var . "</h1>";
-    echo "<h1>Hello " . $ver . "</h1>";
-
-//}
+    var_dump($insertOne->getInsertedId());
+}
