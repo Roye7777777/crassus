@@ -11,8 +11,9 @@ $client = new Client([
     'base_uri' => 'http://crassus-php.azurewebsites.net',
     'timeout'  => 10.0,
 ]);
+echo (gettype($_GET['name']));
 
-if ($_GET['name'] === 'null' || $_GET['age'] === 'null' ) {
+if ($_GET['name'] == 'null' || $_GET['age'] == 'null' ) {
     return 'FAILED';
 } else {
     $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
