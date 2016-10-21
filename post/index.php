@@ -12,6 +12,8 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
+echo $_GET['name'] . gettype($_GET['name']);
+echo $_GET['age'] . gettype($_GET['age']);
 if (is_null($_GET['name']) || is_null($_GET['age'])) {
     echo 'faal';
     return 'FAILED';
