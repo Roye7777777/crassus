@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
-    'json' => ['name' => 'jannus', 'age' => 99]
+    'json' => ['name' => $_POST['name'], 'age' => $_POST['age']]
 ]);
 $code = $response->getStatusCode();
 echo $code;
