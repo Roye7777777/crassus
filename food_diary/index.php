@@ -17,8 +17,7 @@ $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/
 $dbname='crassus';
 $collname='food_diaries';
 $collection=$client->$dbname->$collname;
-header('Content-Type:application/json;charset=utf-8');
-// This $query will be the content that comes between
+//header('Content-Type:application/json;charset=utf-8');
 $query = array();
 
 if (!is_null($_GET['id'])) {
