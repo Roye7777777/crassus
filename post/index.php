@@ -12,13 +12,7 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-if ($_GET['name'] == 'NULL') {
-    echo 'LOL';
-}
-if (is_null($_GET['name'])) {
-    echo 'ROFL';
-}
-if (is_null($_GET['name']) || is_null($_GET['age']) || $_GET['name'] == 'NULL' || $_GET['age'] == 'NULL' ) {
+if (is_null($_GET['name']) || is_null($_GET['age'])) {
     return 'FAILED';
 } else {
     $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
