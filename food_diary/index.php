@@ -43,6 +43,7 @@ foreach($cursor as $item){
     $i++;
 }
 echo json_encode($return, JSON_FORCE_OBJECT);
+echo "<p>";
 
 if (isset($_POST['breakfast'], $_POST['lunch'],
     $_POST['dinner'], $_POST['snacks']))
