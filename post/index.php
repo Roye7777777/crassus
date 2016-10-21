@@ -1,22 +1,34 @@
 <?php
-if( $_POST["name"] || $_POST["age"] ) {
-    if (preg_match("/[^A-Za-z'-]/",$_POST['name'] )) {
-        die ("invalid name and name should be alpha");
-    }
-    echo "Welcome ". $_POST['name']. "<br />";
-    echo "You are ". $_POST['age']. " years old.";
+/**
+ * Created by PhpStorm.
+ * User: Roy
+ * Date: 13-10-2016
+ * Time: 10:31
+ */
+require '../vendor/autoload.php';
+use GuzzleHttp\Client;
+$client = new Client([
+    'base_uri' => 'http://crassus-php.azurewebsites.net',
+    'timeout'  => 10.0,
+]);
 
-    exit();
+echo $_GET['name'] . gettype($_GET['name']);
+echo $_GET['age'] . gettype($_GET['age']);
+if (is_null($_GET['name']) || is_null($_GET['age'])) {
+    echo 'faal';
+    return 'FAILED';
+} else {
+    $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+    $dbname = 'crassus';
+    $collname = 'users';
+    $collection = $client->$dbname->$collname;
+//header('Content-Type:application/json;charset=utf-8');
+// This $query will be the content that comes between
+    $query = array('name' => $_GET['name'], 'age' => $_GET['age']);
+
+    $cursor = $collection->insertOne($query);
+    $insertOne = $collection->insertOne($query);
+
+    printf("Inserted %d document(s)\n", $insertOne->getInsertedCount());
+    var_dump($insertOne->getInsertedId());
 }
-?>
-<html>
-<body>
-
-<form action = "<?php $_PHP_SELF ?>" method = "POST">
-    Name: <input type = "text" name = "name" />
-    Age: <input type = "text" name = "age" />
-    <input type = "submit" />
-</form>
-
-</body>
-</html>

@@ -28,3 +28,5 @@ $result = $collection->find( $cursor );
 foreach ($result as $entry) {
     echo json_encode($entry);
 }
+
+?>
