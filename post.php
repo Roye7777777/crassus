@@ -6,12 +6,11 @@
  * Time: 12:23
  */
 $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post', [
-    'form_params' => [
-        'name' => 'Chaso',
-        'age' => '123'
-    ]
+    'json' => ['name' => 'jannus', 'age' => 99]
 ]);
-foreach ($response->getHeaders() as $name => $values) {
-    echo $name . ': ' . implode(', ', $values) . "\r\n";
+$code = $response->getStatusCode();
+echo $code;
+if ($response->hasHeader('Content-Length')) {
+    echo "It exists";
 }
 ?>
