@@ -1,8 +1,9 @@
 <?php
-//$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
-//$dbname='crassus';
-//$collname='users';
-//$collection=$client->$dbname->$collname;
+require '../vendor/autoload.php';
+$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+$dbname='crassus';
+$collname='users';
+$collection=$client->$dbname->$collname;
 
 if( $_POST["name"] || $_POST["age"] ) {
     if (preg_match("/[^A-Za-z'-]/",$_POST['name'] )) {
