@@ -43,13 +43,18 @@ foreach($cursor as $item){
     $i++;
 }
 echo json_encode($return, JSON_FORCE_OBJECT);
+
+print_r($_POST);
 ?>
 
 <html>
 <body>
 
-<form action="" method="post">
-    <input type="text" name="name">
+<form action="index.php" method="post">
+    Breakfast: <input type="text" name="breakfast"> <br />
+    Lunch: <input type="text" name="lunch"> <br />
+    Dinner: <input type="text" name="dinner"> <br />
+    Snacks: <input type="text" name="snacks"> <br />
     <input type="submit">
 </form>
 
