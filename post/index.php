@@ -13,6 +13,7 @@ $client = new Client([
 ]);
 
 if (is_null($_GET['name']) || is_null($_GET['age'])) {
+    echo 'faal';
     return 'FAILED';
 } else {
     $client = new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
