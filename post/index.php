@@ -12,7 +12,7 @@ $client = new Client([
     'timeout'  => 10.0,
 ]);
 
-if (is_null($_GET['name']) || is_null($_GET['age'])) {
+if (is_null($_POST['name']) || is_null($_POST['age'])) {
     echo 'Not all variables specified';
     return 'FAILED';
 } else {
@@ -21,7 +21,7 @@ if (is_null($_GET['name']) || is_null($_GET['age'])) {
     $collname = 'users';
     $collection = $client->$dbname->$collname;
     //header('Content-Type:application/json;charset=utf-8');
-    $query = array('name' => $_GET['name'], 'age' => $_GET['age']);
+    $query = array('name' => $_POST['name'], 'age' => $_POST['age']);
 
     $insertOne = $collection->insertOne($query);
 
