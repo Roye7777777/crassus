@@ -12,18 +12,19 @@ $age = $data["age"];
 
 if( empty($name) || empty($age) ) {
     echo 'BOE';
-//    if (preg_match("/[^A-Za-z'-]/",$name )) {
-//        die ("invalid name and name should be alpha");
-//    }
-//    //header('Content-Type:application/json;charset=utf-8');
-//    $query = array( 'name' => $name, 'age' => $age  );
-//    $cursor = $collection->insertOne( $query );
-//
-//    echo "Welcome ". $name. "<br />";
-//    echo "You are ". $age. " years old.<br/>";
-//    //echo "Inserted %d document(s)<br/>", $cursor->getInsertedCount();
-//    //echo $cursor->getInsertedId();
-//
-//    exit();
-} else {echo 'yay';}
+} else {
+    if (preg_match("/[^A-Za-z'-]/",$name )) {
+        die ("invalid name and name should be alpha");
+    }
+    //header('Content-Type:application/json;charset=utf-8');
+    $query = array( 'name' => $name, 'age' => $age  );
+    $cursor = $collection->insertOne( $query );
+
+    echo "Welcome ". $name. "<br />";
+    echo "You are ". $age. " years old.<br/>";
+    //echo "Inserted %d document(s)<br/>", $cursor->getInsertedCount();
+    //echo $cursor->getInsertedId();
+
+    exit();
+}
 ?>
