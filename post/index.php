@@ -6,10 +6,13 @@ $collname='users';
 $collection=$client->$dbname->$collname;
 
 $data = json_decode(file_get_contents('php://input'), true);
+
 $name = $data["name"];
 $age = $data["age"];
 
-if( $name || $age ) {
+if( empty($name) || empty($age) ) {
+    echo 'BOE';
+} else {
     if (preg_match("/[^A-Za-z'-]/",$name )) {
         die ("invalid name and name should be alpha");
     }
@@ -25,14 +28,3 @@ if( $name || $age ) {
     exit();
 }
 ?>
-<html>
-<body>
-
-<form action = "<?php $_PHP_SELF ?>" method = "POST">
-    Name: <input type = "text" name = "name" />
-    Age: <input type = "text" name = "age" />
-    <input type = "submit" />
-</form>
-
-</body>
-</html>
