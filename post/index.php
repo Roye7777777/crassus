@@ -5,16 +5,20 @@ $dbname='crassus';
 $collname='users';
 $collection=$client->$dbname->$collname;
 
-if( $_POST["name"] || $_POST["age"] ) {
-    if (preg_match("/[^A-Za-z'-]/",$_POST['name'] )) {
+$data = json_decode(file_get_contents('php://input'), true);
+$name = $data["name"];
+$age = $data["age"];
+
+if( $name || $age ) {
+    if (preg_match("/[^A-Za-z'-]/",$name )) {
         die ("invalid name and name should be alpha");
     }
     //header('Content-Type:application/json;charset=utf-8');
-    $query = array( 'name' => $_POST["name"], 'age' => $_POST["age"]  );
+    $query = array( 'name' => $name, 'age' => $age  );
     $cursor = $collection->insertOne( $query );
 
-    echo "Welcome ". $_POST['name']. "<br />";
-    echo "You are ". $_POST['age']. " years old.<br/>";
+    echo "Welcome ". $name. "<br />";
+    echo "You are ". $age. " years old.<br/>";
     //echo "Inserted %d document(s)<br/>", $cursor->getInsertedCount();
     //echo $cursor->getInsertedId();
 
