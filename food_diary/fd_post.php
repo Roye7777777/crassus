@@ -14,7 +14,9 @@ use GuzzleHttp\Client;
 $client = new Client(['base-uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/food_diary/', [
     'json' => ['breakfast' => $_POST['breakfast'], 'lunch' => $_POST['lunch'],
-        'dinner' => $_POST['dinner'], 'snacks' => $_POST['snacks']]
+        'dinner' => $_POST['dinner'], 'snacks' => $_POST['snacks'],
+        'post_date' => $_POST['post_date'], 'number_week' => $_POST['number_week'],
+        'users_id' => $_POST['users_id']]
 ]);
 $code = $response->getStatusCode();
 echo $code;

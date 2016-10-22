@@ -80,5 +80,5 @@ elseif ($verb == 'POST')
 }
 else
 {
-    echo "NIETS";
+    echo "Geen request...";
 }
