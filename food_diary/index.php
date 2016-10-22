@@ -28,9 +28,11 @@ header('Content-Type:application/json;charset=utf-8');
     }
 
     $cursor = $collection->find($query);
-                                                    // <!---
-$verb = $_SERVER['REQUEST_METHOD'];
 
+    // Vraag naar type request:
+    $verb = $_SERVER['REQUEST_METHOD'];
+
+//GET request:
 if ($verb == 'GET')
 {
     $i = 0;
@@ -51,9 +53,25 @@ if ($verb == 'GET')
     echo json_encode($return, JSON_FORCE_OBJECT);
 
 }
+//POST request:
 elseif ($verb == 'POST')
 {
-    echo "POST";
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    $breakfast = $data["breakfast"];
+    $lunch = $data["lunch"];
+    $dinner = $data["dinner"];
+    $snacks = $data["snacks"];
+
+    if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) )
+    {
+        echo "ERROR: EMPTY FIELD DETECTED!";
+    }
+    else
+    {
+        $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks);
+        $cursor = $collection->insertOne($query);
+    }
 }
 else
 {
