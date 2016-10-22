@@ -19,29 +19,42 @@ $collname='food_diaries';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-// This $query will be the content that comes between
-$query = array();
+$verb = $_SERVER['REQUEST_METHOD'];
 
-if (!is_null($_GET['id'])) {
-    $var = $_GET['id'];
-    $query = array('_id' => new MongoDB\BSON\ObjectId($var) );
+  if ($verb == 'GET') 
+{
+    // This $query will be the content that comes between
+    $query = array();
+
+    if (!is_null($_GET['id'])) {
+        $var = $_GET['id'];
+        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
+    }
+
+    $cursor = $collection->find($query);
+
+    $i = 0;
+    $return = [];
+    foreach ($cursor as $item) {
+        $return[$i] = array(
+            '_id' => utf8_encode($item['_id']),
+            'breakfast' => $item['breakfast'],
+            'lunch' => $item['lunch'],
+            'dinner' => $item['dinner'],
+            'snacks' => $item['snacks'],
+            'post_date' => $item['post_date'],
+            'number_week' => $item['number_week'],
+            'users_id' => utf8_decode($item['users_id'])
+        );
+        $i++;
+    }
+    echo json_encode($return, JSON_FORCE_OBJECT);
 }
-
-$cursor = $collection->find( $query );
-
-$i = 0;
-$return = [];
-foreach($cursor as $item){
-    $return[$i] = array(
-        '_id'=>utf8_encode($item['_id']),
-        'breakfast'=>$item['breakfast'],
-        'lunch'=>$item['lunch'],
-        'dinner'=>$item['dinner'],
-        'snacks'=>$item['snacks'],
-        'post_date'=>$item['post_date'],
-        'number_week'=>$item['number_week'],
-        'users_id'=>utf8_decode($item['users_id'])
-    );
-    $i++;
+else if ($verb == 'POST')
+{
+    echo "POST REQUEST!";
 }
-echo json_encode($return, JSON_FORCE_OBJECT);
+else
+{
+    echo "Stop maar... Het werkt voor geen meter!";
+}
