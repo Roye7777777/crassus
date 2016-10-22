@@ -43,6 +43,8 @@ foreach($cursor as $item){
     $i++;
 }
 echo json_encode($return, JSON_FORCE_OBJECT);
+
+/*
 echo "<p>";
 
 if (isset($_POST['breakfast'], $_POST['lunch'],
@@ -53,14 +55,15 @@ if (isset($_POST['breakfast'], $_POST['lunch'],
     $dinner = htmlentities($_POST['dinner'], ENT_QUOTES, 'UTF-8');
     $snacks = htmlentities($_POST['snacks'], ENT_QUOTES, 'UTF-8');
 
-    echo "Breakfast: {$breakfast} <br /> lunch: {$lunch} <br /> dinner: {$dinner} <br /> snacks: {$snacks}.";
+    echo "Breakfast: {$breakfast} <br /> lunch: {$lunch} <br /> dinner: {$dinner} <br /> snacks: {$snacks}";
 }
+*/
 ?>
 
 <html>
 <body>
 
-<form action="index.php" method="post">
+<form action="fd_post.php" method="post">
     Breakfast: <input type="text" name="breakfast"> <br />
     Lunch: <input type="text" name="lunch"> <br />
     Dinner: <input type="text" name="dinner"> <br />
