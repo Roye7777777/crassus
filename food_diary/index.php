@@ -28,7 +28,11 @@ header('Content-Type:application/json;charset=utf-8');
     }
 
     $cursor = $collection->find($query);
+                                                    // <!---
+$verb = $_SERVER['REQUEST_METHOD'];
 
+if ($verb == 'GET')
+{
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
@@ -46,11 +50,6 @@ header('Content-Type:application/json;charset=utf-8');
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
 
-$verb = $_SERVER['REQUEST_METHOD'];
-
-if ($verb == 'GET')
-{
-    echo "GET";
 }
 elseif ($verb == 'POST')
 {
