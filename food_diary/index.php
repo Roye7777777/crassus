@@ -62,6 +62,9 @@ elseif ($verb == 'POST')
     $lunch = $data["lunch"];
     $dinner = $data["dinner"];
     $snacks = $data["snacks"];
+    $post_date = $data["post_date"];
+    $number_week = $data["number_week"];
+    $users_id = $data["users_data"];
 
     if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) )
     {
