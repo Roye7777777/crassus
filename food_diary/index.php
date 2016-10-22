@@ -64,15 +64,17 @@ elseif ($verb == 'POST')
     $snacks = $data["snacks"];
     $post_date = $data["post_date"];
     $number_week = $data["number_week"];
-    $users_id = $data["users_data"];
+    $users_id = $data["users_id"];
 
-    if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) )
+    if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) ||
+            empty($post_date) || empty($number_week) || empty($users_id))
     {
         echo "ERROR: EMPTY FIELD DETECTED!";
     }
     else
     {
-        $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks);
+        $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
+                'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
         $cursor = $collection->insertOne($query);
     }
 }
