@@ -6,18 +6,26 @@
  * Time: 13:12
  */
 
-require '../vendor/autoload.php';
-use GuzzleHttp\Client;
-$client = new Client([
-    'base_uri' => 'http://crassus-php.azurewebsites.net',
-    'timeout'  => 10.0,
-]);
+//------------------CONNECT:
 
+require '../vendor/autoload.php';
+//use GuzzleHttp\Client;
+//$client = new Client([
+//    'base_uri' => 'http://crassus-php.azurewebsites.net',
+//    'timeout'  => 10.0,
+//]);
 $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
 $dbname='crassus';
 $collname='food_diaries';
 $collection=$client->$dbname->$collname;
+
 //header('Content-Type:application/json;charset=utf-8');
+
+//------------------GET:
+
+//$verb = $_SERVER['REQUEST_METHOD'];           // <= ???
+//if ($verb == 'GET') {
+
 $query = array();
 
 if (!is_null($_GET['id'])) {
@@ -44,7 +52,29 @@ foreach($cursor as $item){
 }
 echo json_encode($return, JSON_FORCE_OBJECT);
 
+//------------------POST:
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+$breakfast = $data["breakfast"];
+$lunch = $data["lunch"];
+$dinner = $data["dinner"];
+$snacks = $data["snacks"];
+
+if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) )
+{
+    echo 'EMPTY FILE DETECTED!';
+}
+else
+{
+    //header('Content-Type:application/json;charset=utf-8');
+    $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks);
+    $cursor = $collection->insertOne($query);
+}
+
 /*
+//------------------SHOW TEXTBOX FILLS:
+
 echo "<p>";
 
 if (isset($_POST['breakfast'], $_POST['lunch'],
@@ -58,6 +88,7 @@ if (isset($_POST['breakfast'], $_POST['lunch'],
     echo "Breakfast: {$breakfast} <br /> lunch: {$lunch} <br /> dinner: {$dinner} <br /> snacks: {$snacks}";
 }
 */
+
 ?>
 
 <html>
