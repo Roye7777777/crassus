@@ -16,4 +16,9 @@ $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/food_
     'json' => ['breakfast' => $_POST['breakfast'], 'lunch' => $_POST['lunch'],
         'dinner' => $_POST['dinner'], 'snacks' => $_POST['snacks']]
 ]);
+$code = $response->getStatusCode();
+echo $code;
+if ($response->hasHeader('Content-Length')) {
+    echo "It exists";
+}
 ?>
