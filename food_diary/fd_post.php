@@ -19,6 +19,7 @@ $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/food_
 $code = $response->getStatusCode();
 echo $code;
 if ($response->hasHeader('Content-Length')) {
-    echo "It exists";
+    echo "<br />";
+    echo "Data is toegevoegd aan de database";
 }
 ?>

@@ -18,6 +18,7 @@ $dbname='crassus';
 $collname='food_diaries';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
+
 // This $query will be the content that comes between
 $query = array();
 
