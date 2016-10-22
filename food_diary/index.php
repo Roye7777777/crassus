@@ -19,10 +19,6 @@ $collname='food_diaries';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-$verb = $_SERVER['REQUEST_METHOD'];
-
-  if ($verb == 'GET') 
-{
     // This $query will be the content that comes between
     $query = array();
 
@@ -49,12 +45,18 @@ $verb = $_SERVER['REQUEST_METHOD'];
         $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
-}
-else if ($verb == 'POST')
+
+$verb = $_SERVER['REQUEST_METHOD'];
+
+if ($verb == 'GET')
 {
-    echo "POST REQUEST!";
+    echo "GET";
+}
+elseif ($verb == 'POST')
+{
+    echo "POST";
 }
 else
 {
-    echo "Stop maar... Het werkt voor geen meter!";
+    echo "NIETS";
 }
