@@ -59,6 +59,7 @@ elseif ($verb == 'POST')
     $data = json_decode(file_get_contents('php://input'), true);
 
     $today = date("Y-m-d H:i:s");
+    $week = date("W");
 
     $breakfast = $data["breakfast"];
     $lunch = $data["lunch"];
@@ -66,7 +67,7 @@ elseif ($verb == 'POST')
     $snacks = $data["snacks"];
 //    $post_date = $data["post_date"];
     $post_date = $today;
-    $number_week = $data["number_week"];
+    $number_week = $week;
     $users_id = $data["users_id"];
 
     if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) ||
