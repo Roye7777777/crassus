@@ -62,7 +62,8 @@ elseif ($verb == 'POST')
     $lunch = $data["lunch"];
     $dinner = $data["dinner"];
     $snacks = $data["snacks"];
-    $post_date = $data["post_date"];
+    //$post_date = $data["post_date"];
+    $post_date = $today = date("Y-m-d H:i:s");
     $number_week = $data["number_week"];
     $users_id = $data["users_id"];
 
