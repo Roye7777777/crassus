@@ -22,6 +22,6 @@ $code = $response->getStatusCode();
 echo $code;
 if ($response->hasHeader('Content-Length')) {
     echo "<br />";
-    echo "Data is toegevoegd aan de database";
+    echo "Correct";
 }
 ?>
