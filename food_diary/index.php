@@ -58,14 +58,14 @@ elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $today = date("Y-m-d H:i:s");
+//    $today = date("Y-m-d H:i:s");
 
     $breakfast = $data["breakfast"];
     $lunch = $data["lunch"];
     $dinner = $data["dinner"];
     $snacks = $data["snacks"];
-    //$post_date = $data["post_date"];
-    $post_date = $today;
+    $post_date = $data["post_date"];
+//    $post_date = $today;
     $number_week = $data["number_week"];
     $users_id = $data["users_id"];
 
