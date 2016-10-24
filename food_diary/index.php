@@ -69,7 +69,7 @@ elseif ($verb == 'POST')
     $number_week = $week;
     $users_id = $data["users_id"];
 
-    function default_value($var, $default)  // ('&' vóór $var?)
+    function default_value(&$var, $default)
     {
         if (empty($var))
         {
