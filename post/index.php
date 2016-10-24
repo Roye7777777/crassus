@@ -9,6 +9,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $name = $data["name"];
 $age = $data["age"];
+$weight = $data["weigth"];
+$gender = $data["gender"];
+$length = $data["length"];
+
 
 if( empty($name) || empty($age) ) {
     echo 'BOE';
@@ -17,11 +21,14 @@ if( empty($name) || empty($age) ) {
         die ("invalid name and name should be alpha");
     }
     //header('Content-Type:application/json;charset=utf-8');
-    $query = array( 'name' => $name, 'age' => $age  );
+    $query = array( 'name' => $name, 'age' => $age, 'weight' => $weight, 'length' => $length, 'gender' => $gender );
     $cursor = $collection->insertOne( $query );
 
     echo "Welcome ". $name. "<br />";
     echo "You are ". $age. " years old.<br/>";
+    echo $weight. "<br />";
+    echo $length. "<br />";
+    echo $gender. "<br />";
     //echo "Inserted %d document(s)<br/>", $cursor->getInsertedCount();
     //echo $cursor->getInsertedId();
 
