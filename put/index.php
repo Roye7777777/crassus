@@ -11,14 +11,17 @@ $name = $data["name"];
 $age = $data["age"];
 
 if( empty($name) || empty($age) ) {
-    echo 'No arguments given';
+    echo "No args given";
 } else {
     if (preg_match("/[^A-Za-z'-]/",$name )) {
         die ("invalid name and name should be alpha");
     }
+    echo 'ok';
     //header('Content-Type:application/json;charset=utf-8');
-    $query = array( 'name' => $name, 'age' => $age );
-    $cursor = $collection->updateOne( array('name'=>$name), $query );
+    $cursor = $collection->updateOne(
+        array( 'name' => $name ),
+        array( '$set' => array( 'name' => $name, 'age' => $age ) )
+    );
 
     echo "Welcome ". $name. "<br />";
     echo "You are now ". $age. " years old.<br/>";
