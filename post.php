@@ -12,6 +12,8 @@ use GuzzleHttp\Client;
 if( empty($_POST['name']) || empty($_POST['age']) ) {
     echo 'Ik heb niks';
 } else {
+    echo $_POST['name'], ', ';
+    echo $_POST['age'], '<br/>';
     $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
     $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/add_user/', [
         'json' => ['name' => $_POST['name'], 'age' => $_POST['age']]
