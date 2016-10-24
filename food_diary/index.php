@@ -92,9 +92,9 @@ elseif ($verb == 'POST')
         )
     );
 
-    echo "Success";
+    echo json_encode(array("success"=>1, "upsertedId"=>$cursor->getUpsertedId()), JSON_FORCE_OBJECT);
 }
 else
 {
-    echo "Request niet toepasbaar!";
+    echo json_encode(array("success"=>0), JSON_FORCE_OBJECT);
 }
