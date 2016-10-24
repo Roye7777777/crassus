@@ -13,8 +13,8 @@ use GuzzleHttp\Client;
 if (!isset($_PUT['name'])) {
     die([400, 'No content']);
 }
-$name = $_PUT['name'];
-$age = $_PUT['age'];
+$name = isset($_PUT['name']) ? str_replace(' ', '_', $_POST['name']): "";
+$age = isset($_PUT['age']) ? (int)$_PUT['age']: "";
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->request('PUT', 'http://crassus-php.azurewebsites.net/put/', [
