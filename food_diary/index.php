@@ -65,24 +65,27 @@ elseif ($verb == 'POST')
     $lunch = $data["lunch"];
     $dinner = $data["dinner"];
     $snacks = $data["snacks"];
-//    $post_date = $data["post_date"];
     $post_date = $today;
     $number_week = $week;
     $users_id = $data["users_id"];
 
-    if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) ||
-            empty($post_date) || empty($number_week) || empty($users_id))
+    function default_value($var, $default)  // ('&' vóór $var?)
     {
-        echo "ERROR: EMPTY FIELD DETECTED!";
+        if (empty($var))
+        {
+            $var = $default;
+        }
     }
-    else
-    {
-        $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
-                'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
-        $cursor = $collection->insertOne($query);
-    }
+    default_value($breakfast, null);
+    default_value($lunch, null);
+    default_value($dinner, null);
+    default_value($snacks, null);
+
+    $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
+            'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
+    $cursor = $collection->insertOne($query);
 }
 else
 {
-    echo "Geen request...";
+    echo "Request niet toepasbaar!";
 }
