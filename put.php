@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/put/', [
+$response = $client->request('PUT', 'http://crassus-php.azurewebsites.net/edit_user/', [
     'json' => ['name' => $_PUT['name'], 'age' => $_PUT['age']]
 ]);
 $code = $response->getStatusCode();

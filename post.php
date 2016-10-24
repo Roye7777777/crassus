@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
+$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/add_user/', [
     'json' => ['name' => $_POST['name'], 'age' => $_POST['age']]
 ]);
 $code = $response->getStatusCode();
