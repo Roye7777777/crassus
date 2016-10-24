@@ -83,8 +83,16 @@ elseif ($verb == 'POST')
     default_value($snacks, "");
 
     $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
-            'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
-    $cursor = $collection->insertOne($query);
+            'post_date' => $post_date, 'number_week' => $number_week );
+
+    $cursor = $collection->updateOne(
+        array( '_id' => new MongoDB\BSON\ObjectId($users_id) ),
+        array( '$push' =>
+            array( 'food_diaries' => $query )
+        )
+    );
+
+    echo "Success";
 }
 else
 {
