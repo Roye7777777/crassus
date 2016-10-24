@@ -9,7 +9,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $name = $data["name"];
 $age = $data["age"];
-$weight = $data["weigth"];
+$weight = $data["weight"];
 $gender = $data["gender"];
 $length = $data["length"];
 
