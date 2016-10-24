@@ -10,9 +10,15 @@ require 'vendor/autoload.php';
 // This is the only 'use' we use, to make the HTTP-requests possible
 use GuzzleHttp\Client;
 
+if (!isset($_PUT['name'])) {
+    die([400, 'No content']);
+}
+$name = $_PUT['name'];
+$age = $_PUT['age'];
+
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/put/', [
-    'json' => ['name' => $_PUT['name'], 'age' => $_PUT['age']]
+$response = $client->request('PUT', 'http://crassus-php.azurewebsites.net/put/', [
+    'json' => ['name' => $name, 'age' => $age]
 ]);
 $code = $response->getStatusCode();
 echo $code;

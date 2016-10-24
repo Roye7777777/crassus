@@ -23,9 +23,7 @@ $query = array();
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
     $query = array('_id' => new MongoDB\BSON\ObjectId($var) );
-}
-
-if (!is_null($_GET['tags'])) {
+} elseif (!is_null($_GET['tags'])) {
     $var = $_GET['tags'];
     $tags = explode(' ', $var);
     $tagsList = array();

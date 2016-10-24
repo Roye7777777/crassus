@@ -15,7 +15,7 @@ $length = $data["length"];
 
 
 if( empty($name) || empty($age) ) {
-    echo 'BOE';
+    echo 'No arguments given';
 } else {
     if (preg_match("/[^A-Za-z'-]/",$name )) {
         die ("invalid name and name should be alpha");

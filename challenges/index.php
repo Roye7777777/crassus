@@ -16,15 +16,26 @@ $dbname='crassus';
 $collname='challenges';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$cursor = array();
+$query = array();
 
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-    $cursor = array( '_id' => $var );
+    $query = array( '_id' => $var );
 }
 // kom
-$result = $collection->find( $cursor );
+$cursor = $collection->find( $query );
 
-foreach ($result as $entry) {
-    echo json_encode($entry);
+$i = 0;
+$return = [];
+foreach($cursor as $item) {
+//    if (is_null($item['week_nr']))
+//        return;
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id']),
+        'title'=>$item['title'],
+        'week_nr'=>$item['week_nr']
+    );
+    $i++;
 }
+echo json_encode($return, JSON_FORCE_OBJECT);
+?>

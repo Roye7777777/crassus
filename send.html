@@ -7,12 +7,21 @@
 <body>
 
 <form action = "post.php" method = "POST">
-    Name: <input type = "text" name = "name" />
-    Age: <input type = "text" name = "age" />
-    Gender: <input type = "text" name = "gender" />
-    Weigth: <input type = "text" name = "weight" />
-    Length: <input type = "text" name = "length" />
-    <input type = "submit" value="submit" />
+    <label for="postname">Name</label> <input id="postname" type = "text" name = "name" />
+    <label for="postage">Age</label> <input id="postage" type = "text" name = "age" />
+    <label for="postgender">Gender</label><input id="postgender" type = "text" name = "gender" />
+    <label for="postweight">Weight</label> <input id="postweight" type = "text" name = "weight" />
+    <label for="postlength">Length</label> <input id="postlength" type = "text" name = "length" />
+    <button type = "submit">Submit post</button>
+</form>
+
+<form action = "put.php" method = "POST">
+    <label for="putname">Name</label> <input id="putname" type = "text" name = "name" />
+    <label for="putage">Age</label> <input id="putage" type = "text" name = "age" />
+    <label for="putgender">Gender</label> <input id="putgender" type = "text" name = "gender" />
+    <label for="putwidth">Weight</label> <input id="putwidth" type = "text" name = "weight" />
+    <label for="putlength">Length</label> <input id="putlength" type = "text" name = "length" />
+    <button type = "submit">Submit put</button>
 </form>
 
 </body>

@@ -10,11 +10,11 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 echo $_POST['name'];
-$name = strval($_POST['name']);
-$age = strval($_POST['age']);
-$gender = strval($_POST['gender']);
-$weight = strval($_POST['weight']);
-$length = strval($_POST['length']);
+$name = isset($_POST['name'])? htmlspecialchars(trim($_POST['name'])) : "";
+$age = isset($_POST['age'])? (int)htmlspecialchars(trim($_POST['age'])) : "";
+$gender = isset($_POST['gender'])? htmlspecialchars(trim($_POST['gender'])) : "";
+$weight = isset($_POST['weight'])? (double)htmlspecialchars(trim($_POST['weight'])) : "";
+$length = isset($_POST['height'])? (double)htmlspecialchars(trim($_POST['height'])) : "";
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
