@@ -41,6 +41,8 @@ if ($verb == 'GET')
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'exercises' => $item['exercises'],
+            'number_week' => $item['number_week'],
+            'name_day' => $item['name_day'],
             'users_id' => utf8_decode($item['users_id'])
         );
         $i++;
@@ -53,10 +55,15 @@ elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
+    $week = date("W");
+    $day = date("l");
+
     $exercises = $data["exercises"];
+    $number_week = $week;
+    $name_day = $day;
     $users_id = $data["users_id"];
 
-    $query = array('exercises' => $exercises );
+    $query = array('exercises' => $exercises, 'number_week' => $number_week, 'name_day' => $name_day);
 
     $cursor = $collection->updateOne(
         array( '_id' => new MongoDB\BSON\ObjectId($users_id) ),
