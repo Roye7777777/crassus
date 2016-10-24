@@ -58,6 +58,7 @@ elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
+    date_default_timezone_set('Europe/Amsterdam');
     $today = date("Y-m-d H:i:s");
     $week = date("W");
 
