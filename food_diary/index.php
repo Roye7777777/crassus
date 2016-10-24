@@ -15,7 +15,7 @@ $client = new Client([
 
 $client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
 $dbname='crassus';
-$collname='food_diaries';
+$collname='users';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
@@ -87,7 +87,7 @@ elseif ($verb == 'POST')
 
     $cursor = $collection->updateOne(
         array( '_id' => new MongoDB\BSON\ObjectId($users_id) ),
-        array( '$push' => array( 'food_diaries' => array("test"=>"ja") ) )
+        array( '$push' => array( 'food_diaries' => $query ) )
     );
 
     echo json_encode(array("success"=>1), JSON_FORCE_OBJECT);
