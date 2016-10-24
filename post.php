@@ -9,6 +9,7 @@ require 'vendor/autoload.php';
 // This is the only 'use' we use, to make the HTTP-requests possible
 use GuzzleHttp\Client;
 
+echo $_POST['name'];
 $name = strval($_POST['name']);
 $age = strval($_POST['age']);
 $gender = strval($_POST['gender']);
