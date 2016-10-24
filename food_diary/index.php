@@ -76,10 +76,10 @@ elseif ($verb == 'POST')
             $var = $default;
         }
     }
-    default_value($breakfast, null);
-    default_value($lunch, null);
-    default_value($dinner, null);
-    default_value($snacks, null);
+    default_value($breakfast, "");
+    default_value($lunch, "");
+    default_value($dinner, "");
+    default_value($snacks, "");
 
     $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
             'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
