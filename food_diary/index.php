@@ -58,7 +58,7 @@ elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $today = date("Y-m-d H:i:s");
+    $today = date("Y-m-d h:i:s");
     $week = date("W");
 
     $breakfast = $data["breakfast"];
