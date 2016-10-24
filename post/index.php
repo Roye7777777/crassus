@@ -11,9 +11,8 @@ $name = $data["name"];
 $age = $data["age"];
 
 if( empty($name) || empty($age) ) {
-    echo 'Ik heb niks';
+    echo 'BOE';
 } else {
-    echo $name, ', ', $age, '<br/>';
     if (preg_match("/[^A-Za-z'-]/",$name )) {
         die ("invalid name and name should be alpha");
     }

@@ -1,9 +1,9 @@
 <?php
-/** 
- * Created by PhpStorm. 
- * User: martijnbeljaards 
- * Date: 11-10-16 
- * Time: 13:12 
+/**
+ * Created by PhpStorm.
+ * User: martijnbeljaards
+ * Date: 11-10-16
+ * Time: 13:12
  */
 
 require '../vendor/autoload.php';
@@ -19,18 +19,18 @@ $collname='food_diaries';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-    // This $query will be the content that comes between
-    $query = array();
+// This $query will be the content that comes between
+$query = array();
 
-    if (!is_null($_GET['id'])) {
-        $var = $_GET['id'];
-        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
-    }
+if (!is_null($_GET['id'])) {
+    $var = $_GET['id'];
+    $query = array('_id' => new MongoDB\BSON\ObjectId($var));
+}
 
-    $cursor = $collection->find($query);
+$cursor = $collection->find($query);
 
-    // Vraag naar type request:
-    $verb = $_SERVER['REQUEST_METHOD'];
+// Vraag naar type request:
+$verb = $_SERVER['REQUEST_METHOD'];
 
 //GET request:
 if ($verb == 'GET')
@@ -71,14 +71,14 @@ elseif ($verb == 'POST')
     $users_id = $data["users_id"];
 
     if( empty($breakfast) || empty($lunch) || empty($dinner) || empty($snacks) ||
-            empty($post_date) || empty($number_week) || empty($users_id))
+        empty($post_date) || empty($number_week) || empty($users_id))
     {
         echo "ERROR: EMPTY FIELD DETECTED!";
     }
     else
     {
         $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
-                'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
+            'post_date' => $post_date, 'number_week' => $number_week, 'users_id' => $users_id );
         $cursor = $collection->insertOne($query);
     }
 }
