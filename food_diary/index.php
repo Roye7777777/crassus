@@ -87,9 +87,7 @@ elseif ($verb == 'POST')
 
     $cursor = $collection->updateOne(
         array( '_id' => new MongoDB\BSON\ObjectId($users_id) ),
-        array( '$push' =>
-            array( 'food_diaries' => $query )
-        )
+        array( '$push' => array( 'food_diaries' => array("test"=>"ja") ) )
     );
 
     echo json_encode(array("success"=>1), JSON_FORCE_OBJECT);
