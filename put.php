@@ -1,16 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Roy
- * Date: 21-10-2016
- * Time: 12:23
+ * User: Emiel
+ * Date: 10/23/2016
+ * Time: 11:43 AM
  */
+
 require 'vendor/autoload.php';
 // This is the only 'use' we use, to make the HTTP-requests possible
 use GuzzleHttp\Client;
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('PUT', 'http://crassus-php.azurewebsites.net/put/', [
+$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/put/', [
     'json' => ['name' => $_PUT['name'], 'age' => $_PUT['age']]
 ]);
 $code = $response->getStatusCode();

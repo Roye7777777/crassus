@@ -16,24 +16,17 @@ $dbname='crassus';
 $collname='users';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$query = array();
+$cursor = array();
 
 if (!is_null($_GET['id'])) {
     $var = $_GET['id'];
-    $query = array( '_id' => new MongoDB\BSON\ObjectId($var) );
+    $cursor = array( '_id' => new MongoDB\BSON\ObjectId($var) );
 }
 
-$cursor = $collection->find( $query );
+$result = $collection->find( $cursor );
 
-$i = 0;
-$return = [];
-foreach($cursor as $item){
-    $return[$i] = array(
-        '_id'=>utf8_encode($item['_id']),
-        'name'=>$item['name'],
-        'age'=>$item['age']
-    );
-    $i++;
+foreach ($result as $entry) {
+    echo json_encode($entry);
 }
-echo json_encode($return, JSON_FORCE_OBJECT);
+
 ?>
