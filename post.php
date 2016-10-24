@@ -14,7 +14,7 @@ $name = isset($_POST['name'])? htmlspecialchars(trim($_POST['name'])) : "";
 $age = isset($_POST['age'])? (int)htmlspecialchars(trim($_POST['age'])) : "";
 $gender = isset($_POST['gender'])? htmlspecialchars(trim($_POST['gender'])) : "";
 $weight = isset($_POST['weight'])? (double)htmlspecialchars(trim($_POST['weight'])) : "";
-$length = isset($_POST['height'])? (double)htmlspecialchars(trim($_POST['height'])) : "";
+$length = isset($_POST['length'])? (double)htmlspecialchars(trim($_POST['length'])) : "";
 
 $client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
 $response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
