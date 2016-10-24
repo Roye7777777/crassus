@@ -92,7 +92,7 @@ elseif ($verb == 'POST')
         )
     );
 
-    echo json_encode(array("success"=>1, "upsertedId"=>$cursor->getUpsertedId()), JSON_FORCE_OBJECT);
+    echo json_encode(array("success"=>1), JSON_FORCE_OBJECT);
 }
 else
 {
