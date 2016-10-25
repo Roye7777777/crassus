@@ -8,6 +8,8 @@ header('Content-Type:application/json;charset=utf-8');
 if (!isset($_GET['id']) || is_null($_GET['id']))
     die ("No ID given");
 
+echo json_encode(array('def'=>$_GET['id']));
+
 $get = new MongoDB\BSON\ObjectID($_GET['id']);
 
 echo json_encode(array('abc'=>$get));
@@ -15,7 +17,7 @@ echo json_encode(array('abc'=>$get));
 if (gettype($collection->findOne( array("_id" => $get) )) == "NULL")
     die ("No results");
 
-$cursor = $collection->find( array("_id" => new MongoDB\BSON\ObjectID($get)) );
+$cursor = $collection->find( array("_id" => $get) );
 $i = 0;
 echo json_encode(array('test'=>'df'));
 $return = [];
