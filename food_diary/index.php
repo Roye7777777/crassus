@@ -16,13 +16,13 @@ $foodList = array();
 
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
-        array_push($foodList, array('breakfast' => $_GET['breakfast']));
+        array_push($foodList, array('breakfast' => str_replace(array('_', ','), array(' ', ''), $_GET['breakfast'])));
     if (!is_null($_GET['lunch']))
-        array_push($foodList, array('lunch' => $_GET['lunch']));
+        array_push($foodList, array('lunch' => str_replace(array('_', ','), array(' ', ''), $_GET['lunch'])));
     if (!is_null($_GET['dinner']))
-        array_push($foodList, array('dinner' => $_GET['dinner']));
+        array_push($foodList, array('dinner' => str_replace(array('_', ','), array(' ', ''), $_GET['dinner'])));
     if (!is_null($_GET['snacks']))
-        array_push($foodList, array('snacks' => $_GET['snacks']));
+        array_push($foodList, array('snacks' => str_replace(array('_', ','), array(' ', ''), $_GET['snacks'])));
     $query = array('food_diaries' => array('$elemMatch'=> $foodList));
 }
 
