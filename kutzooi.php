@@ -6,7 +6,7 @@ $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $get = $_GET['id'];
 
-if (!isset($get))
+if (!isset($get) || is_null($get))
     die ("No ID given");
 
 echo json_encode(array("d"=>isset($get)));
