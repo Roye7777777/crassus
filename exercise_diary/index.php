@@ -48,7 +48,7 @@ if ($verb == 'GET')
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'exercises' => $return_exercises,
-            'number_week' => $item['number_week'],
+            'number_week' => $return_exercises,
             'name_day' => $item['name_day'],
             'users_id' => utf8_decode($item['users_id'])
         );
