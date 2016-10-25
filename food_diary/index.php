@@ -47,6 +47,7 @@ if ($verb == 'GET')
                 'lunch' => $item['food_diaries'][$k]['lunch'],
                 'dinner' => $item['food_diaries'][$k]['dinner'],
                 'snacks' => $item['food_diaries'][$k]['snacks'],
+                'post_date' => $item['food_diaries'][$k]['']
             );
             $j++;
         }
@@ -55,7 +56,6 @@ if ($verb == 'GET')
             'food_diaries' => $return_food,
             'post_date' => $item['post_date'],
             'number_week' => $item['number_week'],
-            'users_id' => utf8_decode($item['users_id'])
         );
         $i++;
     }

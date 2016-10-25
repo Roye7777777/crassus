@@ -53,7 +53,7 @@ if ($verb == 'GET')
         //Dus een _id, en de gevulde collection 'exercises_diaries'
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
-            'exercise_diaries' => $return_exercises,
+            'exercise_diaries' => $return_exercises
         );
         $i++;
     }
