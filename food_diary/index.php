@@ -18,13 +18,13 @@ $breakfast = $lunch = $dinner = $snacks = array('$ne'=>'null');
 
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
-        $breakfast = $_GET['breakfast'];
+        $breakfast = str_replace(array('_', ','), array(' ', ''),$_GET['breakfast']);
     if (!is_null($_GET['lunch']))
-        $lunch = $_GET['lunch'];
+        $lunch = str_replace(array('_', ','), array(' ', ''),$_GET['lunch']);
     if (!is_null($_GET['dinner']))
-        $dinner = $_GET['dinner'];
+        $dinner = str_replace(array('_', ','), array(' ', ''),$_GET['dinner']);
     if (!is_null($_GET['snacks']))
-        $snacks = $_GET['snacks'];
+        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['snacks']);
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks)));
 }
 
