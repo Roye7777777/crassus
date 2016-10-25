@@ -30,7 +30,7 @@ if ($verb == 'GET')
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
-        $return[$i] = array(
+        $return[$i] = array( 'food_diaries', array(
             '_id' => utf8_encode($item['_id']),
             'breakfast' => $item['breakfast'],
             'lunch' => $item['lunch'],
@@ -39,7 +39,7 @@ if ($verb == 'GET')
             'post_date' => $item['post_date'],
             'number_week' => $item['number_week'],
             'users_id' => utf8_decode($item['users_id'])
-        );
+        ) );
         $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
