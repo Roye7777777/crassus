@@ -14,8 +14,6 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $foodList = array();
 
-var_dump($_GET);
-
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
         array_push($foodList, array('breakfast' => str_replace(array('_', ','), array(' ', ''), $_GET['breakfast'])));
@@ -27,6 +25,7 @@ if (!empty($_GET)) {
         array_push($foodList, array('snacks' => str_replace(array('_', ','), array(' ', ''), $_GET['snacks'])));
     $query = array('food_diaries' => array('$elemMatch'=> $foodList));
 }
+var_dump($query);
 
 $cursor = $collection->find($query,array('food_diaries'));
 
