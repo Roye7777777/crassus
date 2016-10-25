@@ -1,12 +1,22 @@
 <?php
-require 'vendor/autoload.php';
-$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
-$dbname='crassus';
+
+require 'db.php';
 $collname='users';
 $collection=$client->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
+$cursor = $collection->find(array());
 
-$data = json_decode(file_get_contents('php://input'), true);
+$i = 0;
+$return = [];
+foreach($cursor as $item){
+    $return[$i] = array(
+        '_id'=>utf8_encode($item['_id'])
+    );
+    $i++;
+}
+echo json_encode($return, JSON_FORCE_OBJECT);
+
+/*$data = json_decode(file_get_contents('php://input'), true);
 
 $name = $data["name"];
 $age = $data["age"];
@@ -22,5 +32,5 @@ $cursor = $collection->updateOne(
     array( '$set' => array( 'name' => $name, 'age' => $age ) )
 );
 echo json_encode(array("name"=>$name,"age"=>$age));
-exit();
+exit();*/
 ?>
