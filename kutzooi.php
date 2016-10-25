@@ -8,24 +8,19 @@ header('Content-Type:application/json;charset=utf-8');
 if (!isset($_GET['id']) || is_null($_GET['id']))
     die ("No ID given");
 
-echo json_encode(array('def'=>$_GET['id']));
-
-$arg = strval($_GET['id']);
-echo json_encode(array('ghj'=>$arg));
-
-$get = new MongoDB\BSON\ObjectID( $arg );
-
-echo json_encode(array('abc'=>$get));
-echo $collection->findOne( array("regio" => "NH") );
-echo gettype($collection->findOne( array("regio" => "NH") ));
-foreach($collection->find( array("regio" => "NH")) as $item){
-    echo 'aaaaaaaaaaaa,';
+$cursor = $collection->find();
+$check = false;
+foreach($cursor as $item) {
+    echo($item['_id']);
+    echo(new MongoDB\BSON\ObjectId($_GET['id']));
+    if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
+        $check = true;
+        break;
+    }
 }
-
-if (gettype($collection->findOne( array("_id" => $get) )) == "NULL")
+if (!$check)
     die ("No results");
 
-$cursor = $collection->find( array("_id" => $get) );
 $i = 0;
 echo json_encode(array('test'=>'df'));
 $return = [];
