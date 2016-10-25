@@ -14,7 +14,7 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $foodList = array();
 
-$breakfast = $lunch = $dinner = $snacks = array('$ne'=>'null');
+$breakfast = $lunch = $dinner = $snacks = $post_date = $number_week = array('$ne'=>'null');
 
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
@@ -25,7 +25,11 @@ if (!empty($_GET)) {
         $dinner = str_replace(array('_', ','), array(' ', ''),$_GET['dinner']);
     if (!is_null($_GET['snacks']))
         $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['snacks']);
-    $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks)));
+    if (!is_null($_GET['post_date']))
+        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['post_date']);
+    if (!is_null($_GET['number_week']))
+        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['number_week']);
+    $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks, 'post_date'=>$post_date, 'number_week'=>$number_week)));
 }
 
 $cursor = $collection->find($query,array('food_diaries'));
@@ -47,15 +51,14 @@ if ($verb == 'GET')
                 'lunch' => $item['food_diaries'][$k]['lunch'],
                 'dinner' => $item['food_diaries'][$k]['dinner'],
                 'snacks' => $item['food_diaries'][$k]['snacks'],
-                'post_date' => $item['food_diaries'][$k]['']
+                'post_date' => $item['food_diaries'][$k]['post_date'],
+                'number_week' => $item['food_diaries'][$k]['number_week'],
             );
             $j++;
         }
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
-            'food_diaries' => $return_food,
-            'post_date' => $item['post_date'],
-            'number_week' => $item['number_week'],
+            'food_diaries' => $return_food
         );
         $i++;
     }
