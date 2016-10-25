@@ -16,7 +16,7 @@ header('Content-Type:application/json;charset=utf-8');
 
     if (!is_null($_GET['id'])) {
         $var = $_GET['id'];
-        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
+        $query = array('food_diaries' => array('$elemMatch': array($var));
     }
 
     $cursor = $collection->find($query);
@@ -30,7 +30,7 @@ if ($verb == 'GET')
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
-        $return[$i] = array( 'food_diaries', array(
+        $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'breakfast' => $item['breakfast'],
             'lunch' => $item['lunch'],
@@ -39,7 +39,7 @@ if ($verb == 'GET')
             'post_date' => $item['post_date'],
             'number_week' => $item['number_week'],
             'users_id' => utf8_decode($item['users_id'])
-        ) );
+        );
         $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
