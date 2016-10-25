@@ -7,7 +7,7 @@
  */
 require '../../db.php';
 $collname='questions';
-$collection=$client->$dbname->$collname;
+$collection=$dbclient->$dbname->$collname;
 $var = 1;
 header('Content-Type:application/json;charset=utf-8');
 

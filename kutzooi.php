@@ -2,7 +2,7 @@
 
 require 'db.php';
 $collname='users';
-$collection=$client->$dbname->$collname;
+$collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $cursor = $collection->find(array());
 

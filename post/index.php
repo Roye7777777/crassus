@@ -1,9 +1,7 @@
 <?php
-require '../vendor/autoload.php';
-$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
-$dbname='crassus';
+require '../db.php';
 $collname='users';
-$collection=$client->$dbname->$collname;
+$collection=$dbclient->$dbname->$collname;
 
 $data = json_decode(file_get_contents('php://input'), true);
 

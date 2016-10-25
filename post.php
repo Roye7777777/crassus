@@ -5,9 +5,7 @@
  * Date: 21-10-2016
  * Time: 12:23
  */
-require 'vendor/autoload.php';
-// This is the only 'use' we use, to make the HTTP-requests possible
-use GuzzleHttp\Client;
+require 'db.php';
 
 $name = isset($_POST['name'])? str_replace(' ', '_', $_POST['name']) : "";
 $age = isset($_POST['age'])? (int)urlencode(trim($_POST['age'])) : "";
@@ -17,8 +15,7 @@ $length = isset($_POST['length'])? (double)urlencode(trim($_POST['length'])) : "
 
 echo $name, ', ', gettype($name);
 
-$client = new Client(['base_uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
+$response = $apiclient->request('POST', 'http://crassus-php.azurewebsites.net/post/', [
     'json' => [
         'name' => $name,
         'age' => $age,

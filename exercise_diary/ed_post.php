@@ -7,12 +7,9 @@
  */
 
 // fd_post == food_diary_post
-require '../vendor/autoload.php';
-// This is the only 'use' we use, to make the HTTP-requests possible
-use GuzzleHttp\Client;
+require '../db.php';
 
-$client = new Client(['base-uri' => 'http://crassus-php.azurewebsites.net']);
-$response = $client->request('POST', 'http://crassus-php.azurewebsites.net/exercise_diary/', [
+$response = $apiclient->request('POST', 'http://crassus-php.azurewebsites.net/exercise_diary/', [
     'json' => ['exercises' => $_POST['exercises'], 'number_week' => $_POST['number_week'],
             'name_day' => $_POST['name_day'], 'users_id' => $_POST['users_id']]
 ]);

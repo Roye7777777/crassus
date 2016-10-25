@@ -8,7 +8,7 @@
 
 require '../db.php';
 $collname='challenges';
-$collection=$client->$dbname->$collname;
+$collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $query = array();
 

@@ -7,7 +7,7 @@
  */
 require '../db.php';
 $collname='information';
-$collection=$client->$dbname->$collname;
+$collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 // This $query will be the content that comes between
 $query = array();
