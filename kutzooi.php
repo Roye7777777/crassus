@@ -11,8 +11,10 @@ if (!isset($get) || is_null($get))
 
 echo json_encode(array("d"=>isset($get)));
 echo json_encode(array("e"=>is_null($get)));
+echo json_encode(array("f" => gettype($collection->findOne( array("_id" => array("$ne" => "null") )))));
+echo json_encode(array("g" => gettype($collection->findOne( array("_id" => "gfgdfdf" )))));
 
-$cursor = $collection->find(); // array('_id' => new MongoDB\BSON\ObjectId($get) )
+$cursor = $collection->findOne( array("_id" => new MongoDB\BSON\ObjectID($get)) );
 $c = 0;
 echo json_encode(array("a"=>"f"));
 foreach ($cursor as $item) {
