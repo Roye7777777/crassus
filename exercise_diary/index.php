@@ -15,6 +15,8 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $exerciseList = array();
 
+$exercises = array('$ne'=>'null');
+
 if (!empty($_GET)) {
     if (!is_null($_GET['exercises']))
         array_push($exerciseList, array('exercises' => $_GET['exercises']));
@@ -32,6 +34,14 @@ if ($verb == 'GET')
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
+        $j = 0;
+        $return_exercises = [];
+        for ($k = 0; $k < count($item['exercise_diaries']); $k++) {
+            $return_exercises[$j] = array(
+                'exercises' => $item['exercise_diaries'][$k]['exercises']
+            );
+            $j++;
+        }
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'exercises' => $item['exercises'],
