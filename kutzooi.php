@@ -4,31 +4,27 @@ require 'db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-// This $query will be the content that comes between
-if (!isset($_GET['id']))
+
+if (!isset($_GET['id']) || is_null($_GET['id']))
     die ("No ID given");
 
-echo json_encode(array("b"=>isset($_GET['id'])));
-echo json_encode(array("c"=>is_null($_GET['id'])));
-
-$cursor = $collection->find( array('_id' => new MongoDB\BSON\ObjectId($_GET['id']) ) );
-$c = 0;
-echo json_encode(array("a"=>"f"));
-foreach ($cursor as $item) {
-    $c++;
-}
-echo json_encode(array("results"=>$c));
-if ($c === 0)
-    die ("No results");
-
+// Ik begrijp hier helemaal NIETS van. Geen enkele keer werkt de $collection->find(array("_id"=>MongoDB\BSON\ObjectID($_GET['id']))... overal crasht het
+$cursor = $collection->find();
+$check = false;
 $i = 0;
 $return = [];
-foreach($cursor as $item){
-    $return[$i] = array(
-        '_id'=>utf8_encode($item['_id'])
-    );
-    $i++;
+foreach($cursor as $item) {
+    if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
+        $check = true;
+        $return[$i] = array(
+            '_id'=>utf8_encode($item['_id'])
+        );
+        $i++;
+    }
 }
+if (!$check)
+    die ("No results");
+
 echo json_encode($return, JSON_FORCE_OBJECT);
 
 /*$data = json_decode(file_get_contents('php://input'), true);
