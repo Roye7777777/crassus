@@ -5,4 +5,3 @@ composer.lock
 composer.phar
 db.php
 vendor/
-db.php
