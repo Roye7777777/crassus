@@ -4,14 +4,15 @@ require 'db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-// This $query will be the content that comes between
-if (!isset($_GET['id']))
+$get = $_GET['id'];
+
+if (!isset($get))
     die ("No ID given");
 
-echo json_encode(array("b"=>isset($_GET['id'])));
-echo json_encode(array("c"=>is_null($_GET['id'])));
+echo json_encode(array("c"=>isset($get)));
+echo json_encode(array("d"=>is_null($get)));
 
-$cursor = $collection->find( array('_id' => new MongoDB\BSON\ObjectId($_GET['id']) ) );
+$cursor = $collection->find( array('_id' => new MongoDB\BSON\ObjectId($get) ) );
 $c = 0;
 echo json_encode(array("a"=>"f"));
 foreach ($cursor as $item) {
