@@ -49,11 +49,11 @@ if ($verb == 'GET')
             );
             $j++;
         }
-        //En geef alle velden die voor GET-request opgevraagd worden hier op (dus een _id, en de gevulde collection 'exercises_diaries')
+        //En geef alle velden die voor GET-request opgevraagd worden hier op
+        //Dus een _id, en de gevulde collection 'exercises_diaries'
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'exercise_diaries' => $return_exercises,
-            //'users_id' => utf8_decode($item['users_id'])
         );
         $i++;
     }
