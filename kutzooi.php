@@ -4,6 +4,7 @@ require 'db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
+echo 'fdgdgg';
 
 if (!isset($_GET['id']) || is_null($_GET['id']))
     die ("No ID given");
