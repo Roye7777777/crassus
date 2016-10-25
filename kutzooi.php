@@ -9,7 +9,7 @@ if (!isset($_GET['id']))
     die ("No ID given");
 
 echo json_encode(array("b"=>isset($_GET['id'])));
-echo json_encode(array("b"=>is_null($_GET['id'])));
+echo json_encode(array("c"=>is_null($_GET['id'])));
 
 $cursor = $collection->find( [ '_id' => new MongoDB\BSON\ObjectId($_GET['id']) ] );
 $c = 0;
