@@ -16,6 +16,11 @@ echo json_encode(array('ghj'=>$arg));
 $get = new MongoDB\BSON\ObjectID( $arg );
 
 echo json_encode(array('abc'=>$get));
+echo $collection->findOne( array("regio" => "NH") );
+echo gettype($collection->findOne( array("regio" => "NH") ));
+foreach($collection->find( array("regio" => "NH")) as $item){
+    echo 'aaaaaaaaaaaa,';
+}
 
 if (gettype($collection->findOne( array("_id" => $get) )) == "NULL")
     die ("No results");
