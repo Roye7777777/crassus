@@ -11,18 +11,20 @@ $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-    // This $query will be the content that comes between
-    $query = array();
+// This $query will be the content that comes between
+$query = array();
+$exerciseList = array();
 
-    if (!is_null($_GET['id'])) {
-        $var = $_GET['id'];
-        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
-    }
+if (!empty($_GET)) {
+    if (!is_null($_GET['exercises']))
+        array_push($exerciseList, array('exercises' => $_GET['exercises']));
+    $query = array('exercise_diaries' => array('$elemMatch' => $exerciseList));
+}
 
-    $cursor = $collection->find($query);
+$cursor = $collection->find($query, array('exercise_diaries'));
 
-    // Vraag naar type request:
-    $verb = $_SERVER['REQUEST_METHOD'];
+// Vraag naar type request:
+$verb = $_SERVER['REQUEST_METHOD'];
 
 //GET request:
 if ($verb == 'GET')
@@ -40,7 +42,6 @@ if ($verb == 'GET')
         $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
-
 }
 //POST request:
 elseif ($verb == 'POST')
