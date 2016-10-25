@@ -1,22 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Bob
- * Date: 25-10-2016
- * Time: 12:46
- */
+require 'vendor/autoload.php';
+$client=new MongoDB\Client('mongodb://crassus:0ur0b0r0s@ds046939.mlab.com:46939/crassus');
+$dbname='crassus';
+$collname='users';
+$collection=$client->$dbname->$collname;
+header('Content-Type:application/json;charset=utf-8');
+
 $data = json_decode(file_get_contents('php://input'), true);
-$name = isset($data['name'])? str_replace(' ', '_', $data['name']) : "";
-echo '1 ', $name;
 
-echo "<br/>";
+$name = $data["name"];
+$age = $data["age"];
 
-echo (isset($_PUT['name'])) ? 'jezus': 'mozes';
-
-echo "<br/>";
-
-$nameb = isset($_PUT['name'])? str_replace(' ', '_', $_PUT['name']) : "";
-
-echo '2 ', $nameb;
-
+if( empty($name) || empty($age) ) {
+    die(json_encode(array("status"=>"no args found")));
+}
+if (preg_match("/[^A-Za-z'-]/",$name )) {
+    die (json_encode(array("status"=>"invalid name and name should be alpha")));
+}
+$cursor = $collection->updateOne(
+    array( 'name' => $name ),
+    array( '$set' => array( 'name' => $name, 'age' => $age ) )
+);
+echo json_encode(array("name"=>$name,"age"=>$age));
+exit();
 ?>
