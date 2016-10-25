@@ -15,13 +15,15 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $exerciseList = array();
 
-$exercises = $number_week = array('$ne'=>'null');
+$exercises = $number_week = $name_day = array('$ne'=>'null');
 
 if (!empty($_GET)) {
     if (!is_null($_GET['exercises']))
         array_push($exerciseList, array('exercises' => $_GET['exercises']));
     if (!is_null($_GET['number_week']))
         array_push($exerciseList, array('number_week' => $_GET['number_week']));
+    if (!is_null($_GET['name_day']))
+        array_push($exerciseList, array('name_day' => $_GET['name_day']));
     $query = array('exercise_diaries' => array('$elemMatch' => $exerciseList));
 }
 
@@ -41,15 +43,14 @@ if ($verb == 'GET')
         for ($k = 0; $k < count($item['exercise_diaries']); $k++) {
             $return_exercises[$j] = array(
                 'exercises' => $item['exercise_diaries'][$k]['exercises'],
-                'number_week' => $item['exercise_diaries'][$k]['number_week']
+                'number_week' => $item['exercise_diaries'][$k]['number_week'],
+                'name_day' => $item['exercise_diaries'][$k]['number_week']
             );
             $j++;
         }
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
-            'exercises', 'number_week' => $return_exercises,
-           // 'number_week' => $return_exercises,
-            'name_day' => $item['name_day'],
+            'exercise_diaries' => $return_exercises,
             'users_id' => utf8_decode($item['users_id'])
         );
         $i++;
