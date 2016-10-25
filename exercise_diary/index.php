@@ -40,18 +40,20 @@ if ($verb == 'GET')
     foreach ($cursor as $item) {
         $j = 0;
         $return_exercises = [];
+        //Geef alle velden op die in de collection exercise_diaries dienen te komen hier op (loop door alle users):
         for ($k = 0; $k < count($item['exercise_diaries']); $k++) {
             $return_exercises[$j] = array(
                 'exercises' => $item['exercise_diaries'][$k]['exercises'],
                 'number_week' => $item['exercise_diaries'][$k]['number_week'],
-                'name_day' => $item['exercise_diaries'][$k]['number_week']
+                'name_day' => $item['exercise_diaries'][$k]['name_day']
             );
             $j++;
         }
+        //En geef alle velden die voor GET-request opgevraagd worden hier op (dus een _id, en de gevulde collection 'exercises_diaries')
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'exercise_diaries' => $return_exercises,
-            'users_id' => utf8_decode($item['users_id'])
+            //'users_id' => utf8_decode($item['users_id'])
         );
         $i++;
     }
