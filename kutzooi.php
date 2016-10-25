@@ -10,7 +10,10 @@ if (!isset($_GET['id']) || is_null($_GET['id']))
 
 echo json_encode(array('def'=>$_GET['id']));
 
-$get = new MongoDB\BSON\ObjectID($_GET['id']);
+$arg = strval($_GET['id']);
+echo json_encode(array('ghj'=>$arg));
+
+$get = new MongoDB\BSON\ObjectID( $arg );
 
 echo json_encode(array('abc'=>$get));
 
