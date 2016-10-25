@@ -3,4 +3,5 @@ local
 composer.json
 composer.lock
 composer.phar
+db.php
 vendor/
