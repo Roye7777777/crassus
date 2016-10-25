@@ -9,10 +9,10 @@ $get = $_GET['id'];
 if (!isset($get))
     die ("No ID given");
 
-echo json_encode(array("c"=>isset($get)));
-echo json_encode(array("d"=>is_null($get)));
+echo json_encode(array("d"=>isset($get)));
+echo json_encode(array("e"=>is_null($get)));
 
-$cursor = $collection->find( array('_id' => new MongoDB\BSON\ObjectId($get) ) );
+$cursor = $collection->find(); // array('_id' => new MongoDB\BSON\ObjectId($get) )
 $c = 0;
 echo json_encode(array("a"=>"f"));
 foreach ($cursor as $item) {
