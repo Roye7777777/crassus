@@ -14,7 +14,7 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $foodList = array();
 
-var_dump($query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>'muesli','lunch'=>'kaas'))));
+var_dump(array('food_diaries' => array('$elemMatch'=> array('breakfast'=>'muesli','lunch'=>'kaas'))));
 
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
