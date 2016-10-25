@@ -12,7 +12,7 @@ $get = new MongoDB\BSON\ObjectID($_GET['id']);
 
 echo json_encode(array('abc'=>$get));
 
-if (gettype($collection->findOne( array("_id" => $get) )))
+if (gettype($collection->findOne( array("_id" => $get) )) == "NULL")
     die ("No results");
 
 $cursor = $collection->find( array("_id" => new MongoDB\BSON\ObjectID($get)) );
