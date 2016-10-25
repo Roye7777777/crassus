@@ -11,7 +11,12 @@ echo '1 ', $name;
 
 echo "<br/>";
 
-$nameb = isset($_POST['name'])? str_replace(' ', '_', $_POST['name']) : "";
+echo (isset($_PUT['name'])) ? 'jezus': 'mozes';
+
+echo "<br/>";
+
+$nameb = isset($_PUT['name'])? str_replace(' ', '_', $_PUT['name']) : "";
 
 echo '2 ', $nameb;
 
+?>
