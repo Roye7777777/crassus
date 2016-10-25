@@ -11,18 +11,25 @@ $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 
-    // This $query will be the content that comes between
-    $query = array();
+$query = array();
+$foodList = array();
 
-    if (!is_null($_GET['id'])) {
-        $var = $_GET['id'];
-        $query = array('food_diaries' => array('$elemMatch': array($var));
-    }
+if (!empty($_GET)) {
+    if (!is_null($_GET['breakfast']))
+        array_push($foodList, array('breakfast' => $_GET['breakfast']));
+    if (!is_null($_GET['lunch']))
+        array_push($foodList, array('lunch' => $_GET['lunch']));
+    if (!is_null($_GET['dinner']))
+        array_push($foodList, array('dinner' => $_GET['dinner']));
+    if (!is_null($_GET['snacks']))
+        array_push($foodList, array('snacks' => $_GET['snacks']));
+    $query = array('food_diaries' => array('$elemMatch'=> $foodList));
+}
 
-    $cursor = $collection->find($query);
+$cursor = $collection->find($query,array('food_diaries'));
 
-    // Vraag naar type request:
-    $verb = $_SERVER['REQUEST_METHOD'];
+// Vraag naar type request:
+$verb = $_SERVER['REQUEST_METHOD'];
 
 //GET request:
 if ($verb == 'GET')
@@ -30,12 +37,20 @@ if ($verb == 'GET')
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
+        $j = 0;
+        $return_food = [];
+        for ($k = 0; $k < count($item['food_diaries']); $k++) {
+            $return_food[$j] = array(
+                'breakfast' => $item['food_diaries'][$k]['breakfast'],
+                'lunch' => $item['food_diaries'][$k]['lunch'],
+                'dinner' => $item['food_diaries'][$k]['dinner'],
+                'snacks' => $item['food_diaries'][$k]['snacks'],
+            );
+            $j++;
+        }
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
-            'breakfast' => $item['breakfast'],
-            'lunch' => $item['lunch'],
-            'dinner' => $item['dinner'],
-            'snacks' => $item['snacks'],
+            'food_diaries' => $return_food,
             'post_date' => $item['post_date'],
             'number_week' => $item['number_week'],
             'users_id' => utf8_decode($item['users_id'])
@@ -43,7 +58,6 @@ if ($verb == 'GET')
         $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
-
 }
 //POST request:
 elseif ($verb == 'POST')
