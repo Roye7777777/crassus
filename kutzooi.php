@@ -9,10 +9,11 @@ $get = $_GET['id'];
 if (!isset($get) || is_null($get))
     die ("No ID given");
 
-$cursor = $collection->find( array("_id" => new MongoDB\BSON\ObjectID($get)) );
 if (gettype($collection->findOne( array("_id" => new MongoDB\BSON\ObjectID($get)) )))
     die ("No results");
 
+
+$cursor = $collection->find( array("_id" => new MongoDB\BSON\ObjectID($get)) );
 $i = 0;
 echo json_encode(array('test'=>'df'));
 $return = [];
