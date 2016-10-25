@@ -16,8 +16,6 @@ $foodList = array();
 
 $breakfast = $lunch = $dinner = $snacks = array('$ne'=>'null');
 
-var_dump(array('food_diaries' => array('$elemMatch'=> array('breakfast'=>'muesli','lunch'=>'kaas'))));
-
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
         $breakfast = $_GET['breakfast'];
@@ -29,7 +27,6 @@ if (!empty($_GET)) {
         $snacks = $_GET['snacks'];
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks)));
 }
-var_dump($query);
 
 $cursor = $collection->find($query,array('food_diaries'));
 
