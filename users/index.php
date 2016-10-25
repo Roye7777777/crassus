@@ -11,11 +11,17 @@ $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $query = array();
 
-if (!is_null($_GET['id'])) {
-    $var = $_GET['id'];
-    $query = array( '_id' => new MongoDB\BSON\ObjectId($var) );
-}
+    if (!is_null($_GET['id']) and ($_GET['id'] instanceof \MongoDB\BSON\ObjectID)) {
+        $var = $_GET['id'];
+        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
+        echo 'id bestaat';
+    }
 
+    if (!is_null($_GET['id']) and (!$_GET['id'] instanceof \MongoDB\BSON\ObjectID)) {
+        $var = $_GET['id'];
+        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
+        echo 'id bestaat niet';
+    }
 $cursor = $collection->find( $query );
 
 $i = 0;
