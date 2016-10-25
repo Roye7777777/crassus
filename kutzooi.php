@@ -4,7 +4,16 @@ require 'db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$cursor = $collection->find(array());
+if (!isset($_GET['id']))
+    die ("No ID given");
+
+$cursor = $collection->find( [ '_id' => new MongoDB\BSON\ObjectId($_GET['id']) ] );
+$c = 0;
+foreach ($cursor as $item) {
+    $c++;
+}
+if ($c === 0)
+    die ("No results");
 
 $i = 0;
 $return = [];
