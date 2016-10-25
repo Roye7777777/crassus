@@ -25,6 +25,7 @@ if (!empty($_GET)) {
         $dinner = str_replace(array('_', ','), array(' ', ''),$_GET['dinner']);
     if (!is_null($_GET['snacks']))
         $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['snacks']);
+    var_dump($lunch);
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks)));
 }
 
