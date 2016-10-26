@@ -12,7 +12,12 @@ header('Content-Type:application/json;charset=utf-8');
 $i = 0;
 $return = [];
 if (isset($_GET['id'])) {
-    $check = 0;
+    if (strlen($_GET['id']) !== 24) {
+        http_response_code(400);
+        die('Invalid Id');
+    }
+
+    $check = false;
     foreach ($collection->find() as $item) {
         if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
             $return[$i] = array(
@@ -20,12 +25,13 @@ if (isset($_GET['id'])) {
                 'age' => $item['age'],
                 'name' => $item['name'],
             );
-            $check = 1;
+            $check = true;
             break;
         }
     }
-    if ($check === 0) {
+    if (!$check) {
         http_response_code(400);
+        die('No User found for this Id');
     }
 } else {
     foreach ($collection->find() as $item) {
