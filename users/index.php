@@ -24,6 +24,11 @@ if (isset($_GET['id'])) {
                 '_id' => utf8_encode($item['_id']),
                 'age' => $item['age'],
                 'name' => $item['name'],
+                'length' => $item['length'],
+                'gender' => $item['gender'],
+                'weight' => $item['weight'],
+                'food_diaries' => $item['food_diaries'],
+                'exercise_diaries ' => $item['exercise_diaries']
             );
             $check = true;
             break;
@@ -39,6 +44,11 @@ if (isset($_GET['id'])) {
             '_id' => utf8_encode($item['_id']),
             'age' => $item['age'],
             'name' => $item['name'],
+            'length' => $item['length'],
+            'gender' => $item['gender'],
+            'weight' => $item['weight'],
+            'food_diaries' => $item['food_diaries'],
+            'exercise_diaries ' => $item['exercise_diaries']
         );
         $i++;
     }
