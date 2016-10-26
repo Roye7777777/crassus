@@ -7,8 +7,11 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $name = $data["name"];
 $age = $data["age"];
+$length = $data["length"];
+$weight = $data["weight"];
+$gender = $data["gender"];
 
-if( empty($name) || empty($age) ) {
+if( empty($data)) {
     echo "No args given";
 } else {
     if (preg_match("/[^A-Za-z'-]/",$name )) {
@@ -18,7 +21,7 @@ if( empty($name) || empty($age) ) {
     //header('Content-Type:application/json;charset=utf-8');
     $cursor = $collection->updateOne(
         array( 'name' => $name ),
-        array( '$set' => array( 'name' => $name, 'age' => $age ) )
+        array( '$set' => array( 'length' => $length, 'age' => $age, 'weight' => $weight, 'gender' => $gender ) )
     );
 
     echo "Welcome ". $name. "<br />";
