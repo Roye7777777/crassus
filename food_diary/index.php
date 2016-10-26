@@ -49,25 +49,13 @@ if ($verb == 'GET')
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
-        $j = 0;
-        $return_food = [];
-        for ($k = 0; $k < count($item['food_diaries']); $k++) {
-            $return_food[$j] = array(
-                'breakfast' => $item['food_diaries'][$k]['breakfast'],
-                'lunch' => $item['food_diaries'][$k]['lunch'],
-                'dinner' => $item['food_diaries'][$k]['dinner'],
-                'snacks' => $item['food_diaries'][$k]['snacks'],
-                'post_date' => $item['food_diaries'][$k]['post_date'],
-                'number_week' => $item['food_diaries'][$k]['number_week'],
+        if (!is_null($item['food_diaries'])) {
+            $return[$i] = array(
+                '_id' => utf8_encode($item['_id']),
+                'food_diaries' => $item['food_diaries']
             );
-            $j++;
+            $i++;
         }
-        $return[$i] = array(
-            '_id' => utf8_encode($item['_id']),
-            'food_diaries'=>$item['food_diaries']
-            //'food_diaries' => $return_food
-        );
-        $i++;
     }
     echo json_encode($return, JSON_FORCE_OBJECT);
 }
