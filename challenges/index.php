@@ -32,7 +32,25 @@ if (isset($_GET['id'])) {
 
     if (!$check) {
         http_response_code(404);
-        die(json_encode(array("Status","No User found for this Id")));
+        die(json_encode(array("Status","No challenges found for this Id")));
+    }
+} elseif (isset($_GET['week_nr'])) {
+    $check = false;
+    foreach ($collection->find() as $item) {
+        if ($_GET['week_nr'] == $item['week_nr']) {
+            $return[$i] = array(
+                '_id' => utf8_encode($item['_id']),
+                'title' => $item['title'],
+                'week_nr' => $item['week_nr'],
+            );
+            $check = true;
+            break;
+        }
+    }
+
+    if (!$check) {
+        http_response_code(404);
+        die(json_encode(array("Status","No challenges found for this week number")));
     }
 } else {
     foreach ($collection->find() as $item) {
