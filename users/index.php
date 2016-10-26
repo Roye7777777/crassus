@@ -8,7 +8,6 @@
 require '../db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
-header('Content-Type:application/json;charset=utf-8');
 
 // Vraag naar type request:
 $verb = $_SERVER['REQUEST_METHOD'];
@@ -16,6 +15,7 @@ $verb = $_SERVER['REQUEST_METHOD'];
 
 //GET request:
 if ($verb == 'GET') {
+    header('Content-Type:application/json;charset=utf-8');
     $i = 0;
     $return = [];
     if (isset($_GET['id'])) {
@@ -69,6 +69,7 @@ if ($verb == 'GET') {
 }
 //POST request:
 elseif ($verb == 'POST') {
+    header('Content-Type:application/json;charset=utf-8');
     $data = json_decode(file_get_contents('php://input'), true);
 
     if(empty($data)) {
@@ -79,8 +80,8 @@ elseif ($verb == 'POST') {
     $name = $data["name"];
     $age = $data["age"];
     $weight = $data["weight"];
-    $gender = $data["gender"];
     $length = $data["length"];
+    $gender = $data["gender"];
 
     if (preg_match("/[^A-Za-z'-]/",$name )) {
         http_response_code(400);
@@ -97,19 +98,23 @@ elseif ($verb == 'POST') {
     default_value($name, "");
     default_value($age, "");
     default_value($weight, "");
-    default_value($gender, "");
     default_value($length, "");
+    default_value($gender, "");
 
     $query = array( 'name' => $name, 'age' => $age, 'weight' => $weight, 'length' => $length, 'gender' => $gender );
     $cursor = $collection->insertOne( $query );
+    die(json_encode(array("Status"=>"Post successful")));
 }
 //POST request:
 elseif ($verb == 'PUT') {
-    $data = json_decode(file_get_contents('php://input'), true);
+    header('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
+    //$data = json_decode(file_get_contents('php://input'), true);
     if (isset($_PUT['name'])) {
         echo '1. '. $_PUT['name'];
+    } else {
+        echo 'boohoo';
     }
-    echo '2. '. $data['name'];
+   // echo '2. '. $data['name'];
 }
 // else
 else {
