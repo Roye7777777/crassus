@@ -12,7 +12,7 @@ header('Content-Type:application/json;charset=utf-8');
 $i = 0;
 $return = [];
 if (isset($_GET['id'])) {
-    var_dump('hee jij moet niet');
+    $check = false;
     foreach ($collection->find() as $item) {
         if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
             $return[$i] = array(
@@ -20,11 +20,13 @@ if (isset($_GET['id'])) {
                 'age' => $item['age'],
                 'name' => $item['name'],
             );
+            $check = true;
             break;
         }
     }
+    if (!$check)
+        die('No Id Found');
 } else {
-    var_dump('joepie');
     foreach ($collection->find() as $item) {
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
@@ -34,5 +36,6 @@ if (isset($_GET['id'])) {
         $i++;
     }
 }
+
 echo json_encode($return, JSON_FORCE_OBJECT);
 ?>
