@@ -26,7 +26,6 @@ if (isset($_GET['id'])) {
     }
     if (!$check) {
         var_dump('kaas');
-        die('No Id Found');
     }
 } else {
     foreach ($collection->find() as $item) {
