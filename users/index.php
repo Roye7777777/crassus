@@ -105,17 +105,6 @@ elseif ($verb == 'POST') {
     $cursor = $collection->insertOne( $query );
     die(json_encode(array("Status"=>"Post successful")));
 }
-//PUT request:
-elseif ($verb == 'PUT') {
-    header('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
-    $data = http_build_query(file_get_contents('php://input'), true);
-    if (isset($_PUT['name'])) {
-        echo '1. '. $_PUT['name'];
-    } else {
-        echo 'boohoo';
-    }
-   // echo '2. '. $data['name'];
-}
 // else
 else {
     http_response_code(405);
