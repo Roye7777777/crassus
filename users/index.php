@@ -105,10 +105,10 @@ elseif ($verb == 'POST') {
     $cursor = $collection->insertOne( $query );
     die(json_encode(array("Status"=>"Post successful")));
 }
-//POST request:
+//PUT request:
 elseif ($verb == 'PUT') {
     header('Content-Type:application/x-www-form-urlencoded;charset=utf-8');
-    //$data = json_decode(file_get_contents('php://input'), true);
+    $data = http_build_query(file_get_contents('php://input'), true);
     if (isset($_PUT['name'])) {
         echo '1. '. $_PUT['name'];
     } else {
