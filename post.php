@@ -6,6 +6,7 @@
  * Time: 12:23
  */
 require 'db.php';
+header('Content-Type:application/json;charset=utf-8');
 
 echo $_POST['name'];
 $name = strval($_POST['name']);
@@ -24,8 +25,6 @@ $response = $apiclient->request('POST', 'http://crassus-php.azurewebsites.net/po
     ]
 ]);
 $code = $response->getStatusCode();
-echo $code;
-if ($response->hasHeader('Content-Length')) {
-    echo "It exists";
-}
+echo json_encode(array('Status'=>$code));
+
 ?>
