@@ -38,7 +38,7 @@ if (!empty($_GET)) {
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks, 'post_date'=>$post_date, 'number_week'=>$number_week)));
 }
 
-$cursor = $collection->find($query,array('food_diaries'));
+$cursor = $collection->find($query, array('food_diaries'));
 
 // Vraag naar type request:
 $verb = $_SERVER['REQUEST_METHOD'];
