@@ -10,31 +10,25 @@ $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $query = array();
-
-$test = $collection->find( [ '_id' => new MongoDB\BSON\ObjectId($_GET['id']) ] );
-    if (!is_null($_GET['id']) && ($test->count() === 0)) {
-        $var = $_GET['id'];
-        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
-        echo 'id bestaat niet';
+if (isset($_GET['id'])) {
+    foreach ($collection->find() as $item) {
+        if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
+            $query = array(
+                '_id' => utf8_encode($item['_id']),
+                'age' => $item['age'],
+                'name' => $item['name'],
+            );
+            break;
+        }
     }
-
-    if (!is_null($_GET['id']) && ($test->count() != 0)) {
-        $var = $_GET['id'];
-        $query = array('_id' => new MongoDB\BSON\ObjectId($var));
-        echo 'id bestaat';
+} else {
+    foreach ($collection->find() as $item) {
+        $query = array(
+            '_id' => utf8_encode($item['_id']),
+            'age' => $item['age'],
+            'name' => $item['name'],
+        );
     }
-$cursor = $collection->find( $query );
-
-$i = 0;
-$return = [];
-foreach($cursor as $item){
-    $return[$i] = array(
-        '_id'=>utf8_encode($item['_id']),
-        'age'=>$item['age'],
-        'name'=>$item['name'],
-    );
-    $i++;
 }
-echo json_encode($return, JSON_FORCE_OBJECT);
-
+echo json_encode($query, JSON_FORCE_OBJECT);
 ?>
