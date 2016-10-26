@@ -25,7 +25,8 @@ if (isset($_GET['id'])) {
         }
     }
     if (!$check) {
-        echo "id bestaat niet";
+        $return[$i] = array('result'=>'no user found with that Id');
+        http_response_code(400);
     }
 } else {
     foreach ($collection->find() as $item) {
