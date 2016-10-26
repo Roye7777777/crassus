@@ -13,8 +13,8 @@ $i = 0;
 $return = [];
 if (isset($_GET['id'])) {
     if (strlen($_GET['id']) !== 24) {
-        http_response_code(400);
-        die('Invalid Id');
+        //http_response_code(400);
+        die(json_encode(array("Status","No Valid Id")));
     }
 
     $check = false;
@@ -30,8 +30,8 @@ if (isset($_GET['id'])) {
         }
     }
     if (!$check) {
-        http_response_code(400);
-        die('No User found for this Id');
+        //http_response_code(400);
+        die(json_encode(array("Status","No User found for this Id")));
     }
 } else {
     foreach ($collection->find() as $item) {
