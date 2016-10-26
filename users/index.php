@@ -12,7 +12,7 @@ header('Content-Type:application/json;charset=utf-8');
 $i = 0;
 $return = [];
 if (isset($_GET['id'])) {
-    $check = false;
+    $check = 0;
     foreach ($collection->find() as $item) {
         if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
             $return[$i] = array(
@@ -20,12 +20,11 @@ if (isset($_GET['id'])) {
                 'age' => $item['age'],
                 'name' => $item['name'],
             );
-            $check = true;
+            $check = 1;
             break;
         }
     }
-    if (!$check) {
-        $return[$i] = array('result'=>'no user found with that Id');
+    if ($check === 0) {
         http_response_code(400);
     }
 } else {
