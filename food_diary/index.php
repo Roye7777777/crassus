@@ -16,19 +16,25 @@ $foodList = array();
 
 $breakfast = $lunch = $dinner = $snacks = $post_date = $number_week = array('$ne'=>'null');
 
+$replace = array(
+    " "=>"_",
+    ","=>""
+);
+
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
-        $breakfast = str_replace(array('_', ','), array(' ', ''),$_GET['breakfast']);
+        $breakfast = str_replace_assoc($replace,$_GET['breakfast']);
     if (!is_null($_GET['lunch']))
-        $lunch = str_replace(array('_', ','), array(' ', ''),$_GET['lunch']);
+        $lunch = str_replace_assoc($replace,$_GET['lunch']);
     if (!is_null($_GET['dinner']))
-        $dinner = str_replace(array('_', ','), array(' ', ''),$_GET['dinner']);
+        $dinner = str_replace_assoc($replace,$_GET['dinner']);
     if (!is_null($_GET['snacks']))
-        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['snacks']);
+        $snacks = str_replace_assoc($replace,$_GET['snacks']);
     if (!is_null($_GET['post_date']))
-        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['post_date']);
+        $snacks = str_replace_assoc($replace,$_GET['post_date']);
     if (!is_null($_GET['number_week']))
-        $snacks = str_replace(array('_', ','), array(' ', ''),$_GET['number_week']);
+        $snacks = str_replace_assoc($replace,$_GET['number_week']);
+
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks, 'post_date'=>$post_date, 'number_week'=>$number_week)));
 }
 
@@ -58,7 +64,8 @@ if ($verb == 'GET')
         }
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
-            'food_diaries' => $return_food
+            'food_diaries'=>$item['food_diaries']
+            //'food_diaries' => $return_food
         );
         $i++;
     }
@@ -106,4 +113,8 @@ elseif ($verb == 'POST')
 else
 {
     echo json_encode(array("success"=>0), JSON_FORCE_OBJECT);
+}
+
+function str_replace_assoc(array $replace, $subject) {
+    return str_replace(array_keys($replace),array_values($replace), $subject);
 }

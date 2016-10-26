@@ -24,6 +24,7 @@ if (!empty($_GET)) {
         array_push($exerciseList, array('number_week' => $_GET['number_week']));
     if (!is_null($_GET['name_day']))
         array_push($exerciseList, array('name_day' => $_GET['name_day']));
+
     $query = array('exercise_diaries' => array('$elemMatch' => $exerciseList));
 }
 
