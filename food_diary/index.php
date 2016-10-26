@@ -67,7 +67,6 @@ if ($verb == 'GET')
 elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
-    var_dump($data);
     if (empty($data)) {
         http_response_code(400);
         die(json_encode(array("Status","No arguments given")));
@@ -86,7 +85,7 @@ elseif ($verb == 'POST')
 
     if (strlen($users_id) !== 24) {
         http_response_code(400);
-        die(json_encode(array("Status","No Valid Id")));
+        die(json_encode(array("Status","No (Valid) Id")));
     }
 
     $check = false;
