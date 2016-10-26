@@ -61,7 +61,11 @@ if ($verb == 'GET')
 elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
-    if (empty($data)) {
+    var_dump($data);
+    var_dump(gettype($data));
+    var_dump(isset($data));
+
+    if (is_null($data)) {
         http_response_code(400);
         die(json_encode(array("Status","No arguments given")));
     }
