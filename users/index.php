@@ -13,7 +13,7 @@ $i = 0;
 $return = [];
 if (isset($_GET['id'])) {
     if (strlen($_GET['id']) !== 24) {
-        //http_response_code(400);
+        http_response_code(400);
         die(json_encode(array("Status","No Valid Id")));
     }
 
@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
         }
     }
     if (!$check) {
-        //http_response_code(400);
+        http_response_code(404);
         die(json_encode(array("Status","No User found for this Id")));
     }
 } else {
