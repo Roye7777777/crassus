@@ -9,11 +9,13 @@ require '../db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
-$query = array();
+$i = 0;
+$return = [];
 if (isset($_GET['id'])) {
+    var_dump('hee jij moet niet');
     foreach ($collection->find() as $item) {
         if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
-            $query = array(
+            $return[$i] = array(
                 '_id' => utf8_encode($item['_id']),
                 'age' => $item['age'],
                 'name' => $item['name'],
@@ -22,13 +24,15 @@ if (isset($_GET['id'])) {
         }
     }
 } else {
+    var_dump('joepie');
     foreach ($collection->find() as $item) {
-        $query = array(
+        $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'age' => $item['age'],
             'name' => $item['name'],
         );
+        $i++;
     }
 }
-echo json_encode($query, JSON_FORCE_OBJECT);
+echo json_encode($return, JSON_FORCE_OBJECT);
 ?>
