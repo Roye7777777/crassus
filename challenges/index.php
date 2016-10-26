@@ -12,9 +12,9 @@ $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $query = array();
 
-if (!is_null($_GET['id'])) {
-    $var = $_GET['id'];
-    $query = array( '_id' => $var );
+if (!is_null($_GET['week_nr'])) {
+    $var = $_GET['week_nr'];
+    $query = array( 'week_nr' => $var );
 }
 // kom
 $cursor = $collection->find( $query );
