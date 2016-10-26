@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
         }
     }
     if (!$check) {
-        die('No results found');
+        echo "id bestaat niet";
     }
 } else {
     foreach ($collection->find() as $item) {
