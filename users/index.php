@@ -24,8 +24,10 @@ if (isset($_GET['id'])) {
             break;
         }
     }
-    if (!$check)
+    if (!$check) {
+        var_dump('kaas');
         die('No Id Found');
+    }
 } else {
     foreach ($collection->find() as $item) {
         $return[$i] = array(
