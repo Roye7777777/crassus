@@ -52,6 +52,10 @@ if (isset($_GET['id'])) {
         );
         $i++;
     }
+    if (count($return) === 0) {
+        http_response_code(404);
+        die(json_encode(array("Status","No Users found")));
+    }
 }
 
 echo json_encode($return, JSON_FORCE_OBJECT);

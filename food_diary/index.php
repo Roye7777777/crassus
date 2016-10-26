@@ -57,13 +57,20 @@ if ($verb == 'GET')
             $i++;
         }
     }
+    if (count($return) === 0) {
+        http_response_code(404);
+        die(json_encode(array("Status","No User(s) found")));
+    }
     echo json_encode($return, JSON_FORCE_OBJECT);
 }
 //POST request:
 elseif ($verb == 'POST')
 {
     $data = json_decode(file_get_contents('php://input'), true);
-
+    if (empty($data)) {
+        http_response_code(400);
+        die(json_encode(array("Status","No arguments given")));
+    }
     date_default_timezone_set('Europe/Amsterdam');
     $today = date("Y-m-d H:i:s");
     $week = date("W");
@@ -75,6 +82,26 @@ elseif ($verb == 'POST')
     $post_date = $today;
     $number_week = $week;
     $users_id = $data["users_id"];
+
+    if (strlen($users_id) !== 24) {
+        http_response_code(400);
+        die(json_encode(array("Status","No Valid Id")));
+    }
+
+    $check = false;
+    foreach ($collection->find() as $item) {
+        if (new MongoDB\BSON\ObjectId($users_id) == $item['_id']) {
+            $return[$i] = array(
+                '_id' => utf8_encode($item['_id'])
+            );
+            $check = true;
+            break;
+        }
+    }
+    if (!$check) {
+        http_response_code(404);
+        die(json_encode(array("Status","No User found with this ID")));
+    }
 
     function default_value(&$var, $default)
     {
@@ -100,7 +127,8 @@ elseif ($verb == 'POST')
 }
 else
 {
-    echo json_encode(array("success"=>0), JSON_FORCE_OBJECT);
+    http_response_code(405);
+    die(json_encode(array("Status","No valid request")));
 }
 
 function str_replace_assoc(array $replace, $subject) {
