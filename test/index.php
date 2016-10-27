@@ -10,10 +10,14 @@ $response = $apiclient->get('/users/');
 
 $code = $response->getStatusCode();
 $body = $response->getBody();
+$len = $response->getHeader('Content-Length');
+$type = $response->getHeader('Content-Type');
 
 echo json_encode(array(
     'Code'=>$code,
-    'body'=>$body
+    'body'=>$body,
+    'len'=>$len,
+    'type'=>$type
 ));
 /*
 $promise = $apiclient->requestAsync('GET', 'http://httpbin.org/get');
