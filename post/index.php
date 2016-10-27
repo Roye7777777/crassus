@@ -15,11 +15,15 @@ if (preg_match("/[^A-Za-z'-]/",$data['first_name'], $data['last_name'] ))
 
 $query = array();
 
+var_dump($data);
+
 foreach($data as $arg) {
     $key = array_keys($arg);
     default_value(${array_keys($arg)}, "");
     $query['$'.$key] = $arg;
 }
+
+var_dump($query);
 
 $cursor = $collection->insertOne( $query );
 
