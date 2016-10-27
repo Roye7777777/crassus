@@ -19,7 +19,8 @@ var_dump($data);
 
 foreach($data as $arg) {
     $key = array_keys($arg);
-    default_value(${array_keys($arg)}, "");
+    var_dump('A'.$key.'&'.$arg);
+    default_value($arg, "");
     $query['$'.$key] = $arg;
 }
 
