@@ -10,16 +10,16 @@ function default_value(&$var, $default)
 }
 $data = json_decode(file_get_contents('php://input'), true);
 
+echo gettype($data);
+echo $data[0];
+
 if (preg_match("/[^A-Za-z'-]/",$data['first_name'], $data['last_name'] ))
     die ("invalid name and name should be alpha");
 
 $query = array();
-
-var_dump($data);
 $i = 0;
 
 foreach($data as $arg) {
-    var_dump($arg);
     default_value($arg, "");
     $query['$'.$data[$i]] = $arg;
     $i++;
