@@ -82,7 +82,7 @@ elseif ($verb == 'POST') {
     }
 
     var_dump($data);
-    echo key($data[0]);
+    echo key($data['username']);
     echo '*******';
 
     $username = $data["username"];
