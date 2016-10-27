@@ -10,13 +10,13 @@ $response = $apiclient->get('/users/');
 
 $code = $response->getStatusCode();
 $body = $response->getBody();
-$len = $response->getHeader('Content-Length');
+$leng = $response->getHeader('Content-Length');
 $type = $response->getHeader('Content-Type');
 
 echo json_encode(array(
     'Code'=>$code,
     'body'=>$body,
-    'len'=>$len,
+    'len'=>$leng,
     'type'=>$type
 ));
 /*
