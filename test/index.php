@@ -7,7 +7,6 @@ require '../db.php';
 
 $response = $apiclient->request('GET', '/users/');
 $response2 = $apiclient->request('POST', '/users/');
-//$response = $apiclient->get('/users/');
 
 $code = $response->getStatusCode();
 $body = $response->getBody();
