@@ -5,8 +5,8 @@ require '../db.php';
 
 // dit moet je even nakijken, of het op deze manier gaat, dat je een json eraan meegeeft
 
-$response = $apiclient->request('GET', '/users/');
-$response2 = $apiclient->request('POST', '/users/');
+$response = $apiclient->get('/users/');
+$response2 = $apiclient->post('/users/');
 
 $code = $response->getStatusCode();
 $body = $response->getBody();
