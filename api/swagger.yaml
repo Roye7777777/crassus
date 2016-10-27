@@ -414,21 +414,6 @@ paths:
           description: Bad request
         404:
           description: Information not found
-  /Motivatie:
-    get:
-      summary: Motivation
-      description: Show motivation
-      tags:
-        - Motivation
-      responses:
-        200:
-          description: Return motivation
-          schema:
-            $ref: '#/definitions/Motivation'
-        400:
-          description: Bad request
-        404:
-          description: Motivation not found
 definitions:
   User:
     type: object
@@ -544,12 +529,3 @@ definitions:
       image_url:
         type: string
         description: url for image
-  Motivation:
-    type: object
-    properties:
-      motivatie_id:
-        type: integer
-        description: id of motivation
-      motivatie:
-        type: string
-        description: motivation
