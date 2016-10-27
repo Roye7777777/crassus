@@ -16,12 +16,14 @@ if (preg_match("/[^A-Za-z'-]/",$data['first_name'], $data['last_name'] ))
 $query = array();
 
 var_dump($data);
+$i = 0;
 
 foreach($data as $arg) {
-    $key = array_keys($arg);
+    $key = key($data[$i]);
     var_dump('A'.$key.'&'.$arg);
     default_value($arg, "");
     $query['$'.$key] = $arg;
+    $i++;
 }
 
 var_dump($query);
