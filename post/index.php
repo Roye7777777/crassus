@@ -19,7 +19,7 @@ var_dump($data);
 $i = 0;
 
 foreach($data as $arg) {
-    var_dump($data[$i]);
+    var_dump($data);
     default_value($arg, "");
     $query['$'.$data[$i]] = $arg;
     $i++;
