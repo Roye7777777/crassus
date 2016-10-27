@@ -11,7 +11,8 @@ function default_value(&$var, $default)
 }
 $data = json_decode(file_get_contents('php://input'), true);
 
-echo gettype($data).'\n';
+echo $data['first_name'];
+echo $data;
 
 
 if (preg_match("/[^A-Za-z'-]/",$data['first_name'], $data['last_name'] ))
@@ -21,7 +22,6 @@ $query = array();
 $i = 0;
 
 foreach($data as $arg) {
-    echo $data[$i].'<br/>';
     default_value($arg, "");
     $query['$'.$data[$i]] = $arg;
     $i++;
