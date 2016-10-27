@@ -29,7 +29,7 @@ $cursor = $collection->find( $query );
 
 $i = 0;
 $return = [];
-foreach($cursor as $item){
+    foreach($cursor as $item){
     $return[$i] = array(
         '_id'=>utf8_encode($item['_id']),
         'title'=>$item['title'],
