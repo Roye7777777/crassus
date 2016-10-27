@@ -1,7 +1,7 @@
 <?php
 require '../db.php';
-use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\RequestException;
+//use Psr\Http\Message\ResponseInterface;
+//use GuzzleHttp\Exception\RequestException;
 
 // dit moet je even nakijken, of het op deze manier gaat, dat je een json eraan meegeeft
 
@@ -24,7 +24,7 @@ echo json_encode(array(
     'body'=>$body,
     'what'=>$what
 ));
-
+/*
 $promise = $apiclient->requestAsync('GET', 'http://httpbin.org/get');
 $promise->then(
     function (ResponseInterface $res) {
@@ -34,6 +34,6 @@ $promise->then(
         echo $e->getMessage() . "\n";
         echo $e->getRequest()->getMethod();
     }
-);
+);*/
 
 ?>
