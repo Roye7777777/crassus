@@ -10,7 +10,8 @@ function default_value(&$var, $default)
 }
 $data = json_decode(file_get_contents('php://input'), true);
 
-echo gettype($data);
+echo gettype($data).'\n';
+
 echo $data[0];
 
 if (preg_match("/[^A-Za-z'-]/",$data['first_name'], $data['last_name'] ))
