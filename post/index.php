@@ -38,7 +38,7 @@ if (preg_match("/[^A-Za-z'-]/",$first_name, $last_name )) {
 $query = array( 'password' => $password, 'username' => $username, 'last_name' => $last_name, 'first_name' => $first_name, 'age' => $age, 'weight' => $weight, 'length' => $length, 'gender' => $gender );
 $cursor = $collection->insertOne( $query );
 
-echo json_encode(array('Status'=>'success', 'Name'=>$first_name . ' ' . $last_name, 'id'=>$cursor->getInsertedId()));
+echo json_encode(array('Status'=>'success', 'Name'=>$first_name . ' ' . $last_name));
 
 exit();
 
