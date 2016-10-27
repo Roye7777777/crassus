@@ -29,8 +29,10 @@ if ($verb == 'GET') {
             if (new MongoDB\BSON\ObjectId($_GET['id']) == $item['_id']) {
                 $return[$i] = array(
                     '_id' => utf8_encode($item['_id']),
+                    'username' => $item['username'],
+                    'first_name' => $item['first_name'],
+                    'last_name' => $item['last_name'],
                     'age' => $item['age'],
-                    'name' => $item['name'],
                     'length' => $item['length'],
                     'gender' => $item['gender'],
                     'weight' => $item['weight'],
@@ -50,7 +52,9 @@ if ($verb == 'GET') {
             $return[$i] = array(
                 '_id' => utf8_encode($item['_id']),
                 'age' => $item['age'],
-                'name' => $item['name'],
+                'username' => $item['username'],
+                'first_name' => $item['first_name'],
+                'last_name' => $item['last_name'],
                 'length' => $item['length'],
                 'gender' => $item['gender'],
                 'weight' => $item['weight'],
@@ -77,31 +81,35 @@ elseif ($verb == 'POST') {
         die(json_encode(array("Status"=>"No args given")));
     }
 
-    $name = $data["name"];
+    $username = $data["username"];
+    $password = $data["password"];
+    $first_name = $data["first_name"];
+    $last_name = $data["last_name"];
     $age = $data["age"];
     $weight = $data["weight"];
-    $length = $data["length"];
     $gender = $data["gender"];
+    $length = $data["length"];
 
-    if (preg_match("/[^A-Za-z'-]/",$name )) {
+    if (preg_match("/[^A-Za-z'-]/",$first_name ) || preg_match("/[^A-Za-z'-]/",$last_name )) {
         http_response_code(400);
-        die(json_encode(array("Status"=>"Invalid argument 'name'")));
+        die(json_encode(array("Status"=>"Invalid argument")));
     }
 
     function default_value(&$var, $default)
     {
         if (empty($var))
-        {
             $var = $default;
-        }
     }
-    default_value($name, "");
+    default_value($username, "");
+    default_value($password, "");
+    default_value($last_name, "");
+    default_value($first_name, "");
     default_value($age, "");
     default_value($weight, "");
-    default_value($length, "");
     default_value($gender, "");
+    default_value($length, "");
 
-    $query = array( 'name' => $name, 'age' => $age, 'weight' => $weight, 'length' => $length, 'gender' => $gender );
+    $query = array( 'password' => $password, 'username' => $username, 'last_name' => $last_name, 'first_name' => $first_name, 'age' => $age, 'weight' => $weight, 'length' => $length, 'gender' => $gender );
     $cursor = $collection->insertOne( $query );
     die(json_encode(array("Status"=>"Post successful")));
 }
