@@ -6,7 +6,8 @@
  * Time: 11:43 AM
  */
 
-require 'db.php';
+require 'db.php';;
+header('Content-Type:application/json;charset=utf-8');
 
 if (!isset($_PUT['name'])) {
     die([400, 'No content']);

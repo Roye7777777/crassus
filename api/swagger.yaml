@@ -27,7 +27,7 @@ paths:
             items:
               $ref: '#/definitions/User'
         404:
-          description: User not found
+          description: Users not found
     post:
       summary: User addition
       description: Add a new user
@@ -62,6 +62,14 @@ paths:
           description: User found
           schema:
             $ref: '#/definitions/User'
+        400:
+          description: No valid ID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        404:
+          description: No user found
     put:
       summary: User adjustment
       description: Edit data of an existing user

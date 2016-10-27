@@ -11,6 +11,7 @@ $collection=$dbclient->$dbname->$collname;
 header('Content-Type:application/json;charset=utf-8');
 $i = 0;
 $return = [];
+$query = array();
 if (isset($_GET['id'])) {
     if (strlen($_GET['id']) !== 24) {
         http_response_code(400);
@@ -29,13 +30,11 @@ if (isset($_GET['id'])) {
             break;
         }
     }
-
-    if (!$check) {
-        http_response_code(404);
-        die(json_encode(array("Status","No User found for this Id")));
-    }
 } else {
-    foreach ($collection->find() as $item) {
+    if (isset($_GET['week_nr'])) {
+        $query = array('week_nr'=>$_GET['week_nr']);
+    }
+    foreach ($collection->find($query) as $item) {
         $return[$i] = array(
             '_id' => utf8_encode($item['_id']),
             'title' => $item['title'],
@@ -43,6 +42,11 @@ if (isset($_GET['id'])) {
         );
         $i++;
     }
+}
+
+if (count($return) === 0) {
+    http_response_code(404);
+    die(json_encode(array("Status","No challenges found")));
 }
 
 echo json_encode($return, JSON_FORCE_OBJECT);

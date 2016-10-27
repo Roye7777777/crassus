@@ -23,8 +23,6 @@ $cursor = $collection->find( $query );
 $i = 0;
 $return = [];
 foreach($cursor as $item) {
-//    if (is_null($item['week_nr']))
-//        return;
     $return[$i] = array(
         '_id'=>utf8_encode($item['_id']),
         'week_nr'=>$item['week_nr'],
@@ -34,5 +32,11 @@ foreach($cursor as $item) {
     );
     $i++;
 }
+
+if (count($return) === 0) {
+    http_response_code(404);
+    die(json_encode(array("Status","No challenges found")));
+}
+
 echo json_encode($return, JSON_FORCE_OBJECT);
 ?>

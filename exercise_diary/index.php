@@ -67,10 +67,12 @@ elseif ($verb == 'POST')
     }
     date_default_timezone_set('Europe/Amsterdam');
     $today = date("Y-m-d H:i:s");
-    $number_week = date("W");
+    $week = date("W");
 
     $exercises = $data["exercises"];
     $name_day = $data["name_day"];
+    $post_date = $today;
+    $number_week = $week;
     $users_id = $data["users_id"];
 
     if (strlen($users_id) !== 24) {
