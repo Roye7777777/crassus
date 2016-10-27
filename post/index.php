@@ -1,5 +1,10 @@
 <?php
 require '../db.php';
+/**
+ *
+ * Zie /users/ voor de werkelijke voor Postman bestemde request
+ *
+ */
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
 

@@ -5,7 +5,11 @@
  * Date: 11-10-16
  * Time: 13:12
  */
-
+/**
+ *
+ * Zie index.php voor de voor Postman bestemde request
+ *
+ */
 // fd_post == food_diary_post
 require '../db.php';
 

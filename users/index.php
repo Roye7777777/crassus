@@ -81,6 +81,10 @@ elseif ($verb == 'POST') {
         die(json_encode(array("Status"=>"No args given")));
     }
 
+    var_dump($data);
+    echo key($data[0]);
+    echo '*******';
+
     $username = $data["username"];
     $password = $data["password"];
     $first_name = $data["first_name"];
