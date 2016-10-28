@@ -35,7 +35,7 @@ foreach($cursor as $item) {
 
 if (count($return) === 0) {
     http_response_code(404);
-    die(json_encode(array("Status","No challenges found")));
+    die(json_encode(array("Status","No questions found")));
 }
 
 echo json_encode($return, JSON_FORCE_OBJECT);
