@@ -6,6 +6,7 @@
  * Time: 13:12 
  */
 
+// Connect with database
 require '../db.php';
 $collname='users';
 $collection=$dbclient->$dbname->$collname;
@@ -14,13 +15,17 @@ header('Content-Type:application/json;charset=utf-8');
 $query = array();
 $foodList = array();
 
+// No empty array's
 $breakfast = $lunch = $dinner = $snacks = $post_date = $number_week = array('$ne'=>'null');
 
+// Replace all spaces with _ and all , with no-space
 $replace = array(
     " "=>"_",
     ","=>""
 );
 
+// if the $_GET request is not empty or the fields are not null,
+// then get the given data of breakfast/etc. and put it in breakfast/etc.
 if (!empty($_GET)) {
     if (!is_null($_GET['breakfast']))
         $breakfast = str_replace_assoc($replace,$_GET['breakfast']);
@@ -35,17 +40,20 @@ if (!empty($_GET)) {
     if (!is_null($_GET['number_week']))
         $snacks = str_replace_assoc($replace,$_GET['number_week']);
 
+    // put all given fields in an array, and place this array into $query for later use
     $query = array('food_diaries' => array('$elemMatch'=> array('breakfast'=>$breakfast, 'lunch'=>$lunch, 'dinner'=>$dinner, 'snacks'=>$snacks, 'post_date'=>$post_date, 'number_week'=>$number_week)));
 }
 
+// Make a $cursor that searches all collections with the values that are given in $query
 $cursor = $collection->find($query,array('food_diaries'));
 
-// Vraag naar type request:
+// ask for type of request:
 $verb = $_SERVER['REQUEST_METHOD'];
 
 //GET request:
 if ($verb == 'GET')
 {
+    // loop through $cursor (with the call for all collections) and add the values into a variable
     $i = 0;
     $return = [];
     foreach ($cursor as $item) {
@@ -57,15 +65,19 @@ if ($verb == 'GET')
             $i++;
         }
     }
+    // if $return got no 0 values (so the database is empty) then return 404 + ERROR (message) and quit
     if (count($return) === 0) {
         http_response_code(404);
         die(json_encode(array("Status","No User(s) found")));
     }
+    // return the created $return with all variables and return it as json
     echo json_encode($return, JSON_FORCE_OBJECT);
 }
 //POST request:
 elseif ($verb == 'POST')
 {
+    // decode the given json variables in Postman (or the textboxes in the app)
+    // so each variable can get a value from the database
     $data = json_decode(file_get_contents('php://input'), true);
     if (empty($data)) {
         http_response_code(400);
@@ -75,6 +87,7 @@ elseif ($verb == 'POST')
     $today = date("Y-m-d H:i:s");
     $week = date("W");
 
+    // put each piece of decoded json-code in $data in a variable
     $breakfast = $data["breakfast"];
     $lunch = $data["lunch"];
     $dinner = $data["dinner"];
@@ -83,11 +96,15 @@ elseif ($verb == 'POST')
     $number_week = $week;
     $users_id = $data["users_id"];
 
+    // the id string in mongodb (objectid) always has 24 keys (numbers/letters)
+    // if the given users_id doesnt have 24 keys give back a 400:ERROR
     if (strlen($users_id) !== 24) {
         http_response_code(400);
         die(json_encode(array("Status","No (Valid) Id")));
     }
 
+    // go through every document in every collection
+    // search for every given $item an id in the database that matches the given users_id
     $check = false;
     foreach ($collection->find() as $item) {
         if (new MongoDB\BSON\ObjectId($users_id) == $item['_id']) {
@@ -103,6 +120,7 @@ elseif ($verb == 'POST')
         die(json_encode(array("Status","No User found with this ID")));
     }
 
+    //give all the fields that arent mentioned a default value
     function default_value(&$var, $default)
     {
         if (empty($var))
@@ -115,9 +133,11 @@ elseif ($verb == 'POST')
     default_value($dinner, "");
     default_value($snacks, "");
 
+    // put all edited variables into an array: $query
     $query = array('breakfast' => $breakfast, 'lunch' => $lunch, 'dinner' => $dinner, 'snacks' => $snacks,
             'post_date' => $post_date, 'number_week' => $number_week );
 
+    // push the arrays to the array where the id matches the users_id
     $cursor = $collection->updateOne(
         array( '_id' => new MongoDB\BSON\ObjectId($users_id) ),
         array( '$push' => array( 'food_diaries' => $query ) )
